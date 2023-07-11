@@ -1,24 +1,25 @@
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, 
-    IPointerClickHandler
+public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler,
+    IPointerExitHandler, IDropHandler
 {
-    private Camera mainCamera;
+    private Camera cameraCache;
 
     [SerializeField] private bool isStatic;
-    [HideInInspector] public bool isPlaced = false;
     [SerializeField] private Image playerZone;
-    
+
+    private Card card;
     private CardHand cardHand;
 
     private Vector2 draggedCardStartPosition;
 
     private void Awake()
     {
-        mainCamera = Camera.main;
+        cameraCache = Camera.main;
+        card = GetComponent<Card>();
         cardHand = GetComponentInParent<CardHand>();
     }
 
@@ -35,49 +36,33 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (isStatic) return;
-
-        if (cardHand.GetCardDeck().isEnemyDeck)
-        {
-            return;
-        }
-
-        if (GameController.Instance.GetCurrentTurn() == 1)
-        {
-            return;
-        }
-
-        if (isPlaced)
+        if (!IsCanDragCard())
         {
             return;
         }
 
         draggedCardStartPosition = GetComponent<RectTransform>().localPosition;
-        draggedCardStartPosition.y = -510;
+
+        if (!card.isPlaced)
+        {
+            draggedCardStartPosition.y = Settings.cardStandartYPosition;
+        }
+        else
+        {
+            draggedCardStartPosition.y = 0f;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isStatic) return;
-
-        if (cardHand.GetCardDeck().isEnemyDeck)
-        {
-            return;
-        }
-
-        if (GameController.Instance.GetCurrentTurn() == 1)
-        {
-            return;
-        }
-
-        if (isPlaced)
+        if (!IsCanDragCard())
         {
             return;
         }
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(eventData.position);
+        Vector3 mousePosition = cameraCache.ScreenToWorldPoint(eventData.position);
         mousePosition.z = 0;
 
         transform.position = mousePosition;
@@ -85,24 +70,12 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (isStatic) return;
-
-        if (cardHand.GetCardDeck().isEnemyDeck)
-        {
-            return;
-        }
-
-        if (GameController.Instance.GetCurrentTurn() == 1)
+        if (!IsCanDragCard())
         {
             return;
         }
 
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-        if (isPlaced)
-        {
-            return;
-        }
 
         GetComponent<RectTransform>().localPosition = draggedCardStartPosition;
         draggedCardStartPosition = Vector2.zero;
@@ -110,57 +83,77 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (isStatic) return;
-
-        if (cardHand.GetCardDeck().isEnemyDeck)
+        if (!IsCardCanBeExamined())
         {
             return;
         }
 
-        if (isPlaced)
-        {
-            return;
-        }
-
-        LeanTween.cancelAll();
-        LeanTween.moveLocalY(eventData.pointerEnter.gameObject, -365, 0.1f);
+        transform.DOLocalMoveY(Settings.cardMouseEnterYPosition, 0.1f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (isStatic) return;
+        if (!IsCardCanBeExamined())
+        {
+            return;
+        }
+
+        transform.DOLocalMoveY(Settings.cardStandartYPosition, 0.1f);
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (card.isPlaced)
+        {
+            Card cardToAttack = eventData.pointerDrag.GetComponent<Card>();
+
+            if (!card.isEnemy)
+            {
+                return;
+            }
+
+            cardToAttack.AttackCard(card);
+            GameFlowController.Instance.InvokeOnCardAttackedEvent();          
+        }
+    }
+
+    private bool IsCanDragCard()
+    {
+        if (isStatic)
+        {
+            return false;
+        }
 
         if (cardHand.GetCardDeck().isEnemyDeck)
         {
-            return;
+            return false;
         }
 
-        if (isPlaced)
+        if (GameFlowController.Instance.GetCurrentTurn() == Turn.EnemyTurn)
         {
-            return;
+            return false;
         }
 
-        LeanTween.moveLocalY(eventData.pointerEnter.gameObject, -510, 0.1f);
+        return true;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private bool IsCardCanBeExamined()
     {
-        Card card = eventData.pointerCurrentRaycast.gameObject.GetComponent<Card>();
-
-
-        if (card != null && isPlaced && GameController.Instance.GetCurrentTurn() == 0)
+        if (isStatic)
         {
-            FindObjectOfType<CardBattle>().playerCard = card;
-            GameController.OnPlayerChooseCardToAttack?.Invoke();
+            return false;
         }
 
-        if (card != null)
+        if (cardHand.GetCardDeck().isEnemyDeck)
         {
-            if (card.isEnemy && GameController.Instance.GetCurrentTurn() == 0 && FindObjectOfType<CardBattle>().playerCard != null)
-            {
-                FindObjectOfType<CardBattle>().enemyCard = card;
-                GameController.OnPlayerChooseCardToAttack?.Invoke();
-            }
+            return false;
         }
+
+        if (card.isPlaced)
+        {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -3,31 +3,46 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     [SerializeField] private CardDetailsSO cardDetails;
-    public int health;
-    public bool isEnemy;
+    [HideInInspector] public bool isPlaced;
+    [HideInInspector] public bool isEnemy;
     public bool isCanAttack;
 
-    private void Awake()
-    {
-        health = cardDetails.health;
-    }
+    private int health;
 
     private void OnEnable()
     {
-        GameController.OnTurnChanged += GameController_OnTurnChanged;
+        GameFlowController.OnTurnChanged += GameController_OnTurnChanged;
     }
 
     private void OnDisable()
     {
-        GameController.OnTurnChanged -= GameController_OnTurnChanged;
+        GameFlowController.OnTurnChanged -= GameController_OnTurnChanged;
     }
 
-    private void GameController_OnTurnChanged(int obj)
+    private void Start()
     {
-        if (GetComponent<CardController>() != null) 
+        health = cardDetails.health;
+
+        if (cardDetails.cardType == CardType.Rush)
         {
-            if (GetComponent<CardController>().isPlaced)
-                isCanAttack = true;
+            isCanAttack = true;
+        }
+        else
+        {
+            isCanAttack = false;
+        }
+    }
+
+    public int GetCardHealth()
+    {
+        return health;
+    }
+
+    private void GameController_OnTurnChanged(Turn turn)
+    {
+        if (isPlaced)
+        {
+            isCanAttack = true;
         }
     }
 
@@ -47,6 +62,7 @@ public class Card : MonoBehaviour
         {
             health -= target.GetCardDetails().damage;
             target.health -= cardDetails.damage;
+            isCanAttack = false;
 
             if (health <= 0)
             {

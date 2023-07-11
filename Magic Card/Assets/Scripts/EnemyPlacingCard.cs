@@ -9,23 +9,23 @@ public class EnemyPlacingCard : MonoBehaviour
 
     private void OnEnable()
     {
-        GameController.OnTurnChanged += Instance_OnTurnChanged;
+        GameFlowController.OnTurnChanged += Instance_OnTurnChanged;
     }
 
     private void OnDisable()
     {
-        GameController.OnTurnChanged -= Instance_OnTurnChanged;
+        GameFlowController.OnTurnChanged -= Instance_OnTurnChanged;
     }
 
     private void Start()
     {
-        if (GameController.Instance.GetCurrentTurn() == 1)
+        if (GameFlowController.Instance.GetCurrentTurn() == Turn.EnemyTurn)
             StartCoroutine(PlaceCardRoutine());
     }
 
-    private void Instance_OnTurnChanged(int turn)
+    private void Instance_OnTurnChanged(Turn turn)
     {
-        if (turn == 1)
+        if (turn == Turn.EnemyTurn)
         {
             StopAllCoroutines();
             StartCoroutine(PlaceCardRoutine());
@@ -47,10 +47,10 @@ public class EnemyPlacingCard : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         cards[randomNumber].transform.SetParent(enemyDeck.transform);
-        cards[randomNumber].GetComponent<CardController>().isPlaced = true;
+        cards[randomNumber].isPlaced = true;
         cards[randomNumber].GetComponent<CardUI>().UpdateCardUI();
 
-        GameController.Instance.enemyPlacedCard.Add(cards[randomNumber]);
+        GameFlowController.Instance.enemyPlacedCard.Add(cards[randomNumber]);
 
         cards.RemoveAt(randomNumber);
 
@@ -58,21 +58,20 @@ public class EnemyPlacingCard : MonoBehaviour
 
         StartCoroutine(AttackRoutine());
 
-        GameController.Instance.ChangeTurn();
+        GameFlowController.Instance.ChangeTurn();
     }
 
     public IEnumerator AttackRoutine()
     {
-        int randomPlayerCardNumber = Random.Range(0, GameController.Instance.playerPlacedCard.Count);
-        int randomEnemyCardNumber = Random.Range(0, GameController.Instance.enemyPlacedCard.Count);
+        int randomPlayerCardNumber = Random.Range(0, GameFlowController.Instance.playerPlacedCard.Count);
+        int randomEnemyCardNumber = Random.Range(0, GameFlowController.Instance.enemyPlacedCard.Count);
 
-        if (GameController.Instance.enemyPlacedCard.Count == 0 || GameController.Instance.playerPlacedCard.Count == 0)
+        if (GameFlowController.Instance.enemyPlacedCard.Count == 0 || GameFlowController.Instance.playerPlacedCard.Count == 0)
             yield break;
 
-        Card enemyCard = GameController.Instance.enemyPlacedCard[randomEnemyCardNumber];
-        Card playerCard = GameController.Instance.playerPlacedCard[randomPlayerCardNumber];
+        Card enemyCard = GameFlowController.Instance.enemyPlacedCard[randomEnemyCardNumber];
+        Card playerCard = GameFlowController.Instance.playerPlacedCard[randomPlayerCardNumber];
 
         enemyCard.AttackCard(playerCard);
-        CardBattle.OnAttack?.Invoke();
     }
 }

@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class CardHand : MonoBehaviour
 {
-    [SerializeField] private GameObject cardPrefab;
     [SerializeField] private CardDeckSO deck;
-    [SerializeField] private Vector2 spawnPosition;
-    [SerializeField] private float offset;
+    [SerializeField] private int startingNumberOfCards;
     [SerializeField] private bool isHidden;
-
-    private float previousXPosition = 0f;
 
     private void Start()
     {
-        SpawnCards();
+        SpawnStartingCards();
     }
 
     public CardDeckSO GetCardDeck()
@@ -22,37 +18,25 @@ public class CardHand : MonoBehaviour
 
     public void SetCardDeck(CardDeckSO cardDeck)
     {
-        this.deck = cardDeck;
+        deck = cardDeck;
     }
 
-    private void SpawnCards()
+    private void SpawnStartingCards()
     {
-        foreach (var card in deck.cards)
+        for (int i = 0; i <= startingNumberOfCards; i++)
         {
-            Card spawnedCard = Instantiate(card.prefab, this.transform);
-            spawnedCard.SetCardDetails(card);
+            if (deck.cards.Count < i)
+            {
+                break;
+            }
+
+            Card spawnedCard = Instantiate(deck.cards[i].prefab, transform);
+            spawnedCard.SetCardDetails(deck.cards[i]);
 
             if (deck.isEnemyDeck)
             {
                 spawnedCard.isEnemy = true;
             }
-
-            RectTransform rect = spawnedCard.GetComponent<RectTransform>();
-
-            rect.localPosition = spawnPosition;
-
-            if (previousXPosition != 0f)
-            {
-                rect.localPosition = new Vector3(previousXPosition + offset, rect.localPosition.y, 0);
-            }
-            else
-            {
-                rect.localPosition = new Vector3(rect.localPosition.x + offset, rect.localPosition.y, 0);
-            }
-
-            previousXPosition = rect.localPosition.x;
         }
-
-        offset = 0;
     }
 }

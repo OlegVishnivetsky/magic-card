@@ -8,8 +8,16 @@ public class CardDetailsSO : ScriptableObject
     [Header("MAIN PARAMETERS")]
     public int damage;
     public int health;
-    public int cost;
+    public int manaCost;
+
+    [Space(10)]
+    public CardTier cardTier;
+    public CardType cardType;
+
+    [Space(10)]
     public string characterName;
+    public string cardDescription;
+
 
     [Header("UI")]
     public Sprite characterAvatarSprite;

@@ -1,22 +1,34 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CardSelector))]
+[RequireComponent(typeof(CardController))]
 public class Card : MonoBehaviour
 {
     [SerializeField] private CardDetailsSO cardDetails;
-    [HideInInspector] public bool isPlaced;
+
     [HideInInspector] public bool isEnemy;
+
+    [HideInInspector] public CardSelector cardSelector;
+    [HideInInspector] public CardController cardController;
+
     public bool isCanAttack;
 
     private int health;
 
+    private void Awake()
+    {
+        cardSelector = GetComponent<CardSelector>();
+        cardController = GetComponent<CardController>();
+    }
+
     private void OnEnable()
     {
-        GameFlowController.OnTurnChanged += GameController_OnTurnChanged;
+        StaticEventsHandler.OnTurnChanged += GameController_OnTurnChanged;
     }
 
     private void OnDisable()
     {
-        GameFlowController.OnTurnChanged -= GameController_OnTurnChanged;
+        StaticEventsHandler.OnTurnChanged -= GameController_OnTurnChanged;
     }
 
     private void Start()
@@ -38,12 +50,14 @@ public class Card : MonoBehaviour
         return health;
     }
 
+    public void DecreaseHealth(int damage)
+    {
+        health -= damage;
+    }
+
     private void GameController_OnTurnChanged(Turn turn)
     {
-        if (isPlaced)
-        {
-            isCanAttack = true;
-        }
+        isCanAttack = true;        
     }
 
     public CardDetailsSO GetCardDetails()
@@ -58,34 +72,25 @@ public class Card : MonoBehaviour
 
     public void AttackCard(Card target)
     {
-        if (isCanAttack)
+        if (!isCanAttack)
         {
-            health -= target.GetCardDetails().damage;
-            target.health -= cardDetails.damage;
-            isCanAttack = false;
+            return;
+        }
 
-            if (health <= 0)
-            {
-                Destroy(gameObject);
-            }
+        health -= target.GetCardDetails().damage;
+        target.DecreaseHealth(cardDetails.damage);
 
-            if (target.health <= 0)
-            {
-                Destroy(target.gameObject);
-            }
+        GetComponent<CardUI>().UpdateCardText();
+        target.GetComponent<CardUI>().UpdateCardText();
 
-            if (target != null)
-            {
-                if (this != null)
-                {
-                    GetComponent<CardUI>().UpdateCardUI();
-                }
+        if (target.GetCardHealth() <= 0)
+        {
+            Destroy(target.gameObject);
+        }
 
-                if (target != null)
-                {
-                    target.GetComponent<CardUI>().UpdateCardUI();
-                }
-            }
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

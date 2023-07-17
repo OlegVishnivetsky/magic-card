@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class Settings
 {
+    public const int maxNumberOfPlacedCards = 3;
+
     public const float cardStandartYPosition = -600f;
     public const float cardMouseEnterYPosition = -365f;
 

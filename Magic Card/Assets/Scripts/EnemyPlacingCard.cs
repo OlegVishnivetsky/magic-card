@@ -9,12 +9,12 @@ public class EnemyPlacingCard : MonoBehaviour
 
     private void OnEnable()
     {
-        GameFlowController.OnTurnChanged += Instance_OnTurnChanged;
+        StaticEventsHandler.OnTurnChanged += Instance_OnTurnChanged;
     }
 
     private void OnDisable()
     {
-        GameFlowController.OnTurnChanged -= Instance_OnTurnChanged;
+        StaticEventsHandler.OnTurnChanged -= Instance_OnTurnChanged;
     }
 
     private void Start()
@@ -47,7 +47,6 @@ public class EnemyPlacingCard : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         cards[randomNumber].transform.SetParent(enemyDeck.transform);
-        cards[randomNumber].isPlaced = true;
         cards[randomNumber].GetComponent<CardUI>().UpdateCardUI();
 
         GameFlowController.Instance.enemyPlacedCard.Add(cards[randomNumber]);

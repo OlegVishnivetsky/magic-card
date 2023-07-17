@@ -161,12 +161,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1741651138271158175}
-  - component: {fileID: 1741651138271158169}
-  - component: {fileID: 1741651138271158174}
-  - component: {fileID: 1741651138271158168}
   - component: {fileID: 9142178195707234582}
   - component: {fileID: 5014836822823343604}
   - component: {fileID: -2760583334432016592}
+  - component: {fileID: 1741651138271158169}
+  - component: {fileID: 1741651138271158168}
+  - component: {fileID: 8730839935623110640}
+  - component: {fileID: 1741651138271158174}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -195,59 +196,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 271.5653, y: 387.9504}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1741651138271158169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741651138271158172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea571a9a9002ef4fb5e00b698869b7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardDetails: {fileID: 11400000, guid: 5b182a879399f93498efbd49bd9db23b, type: 2}
-  isPlaced: 0
-  isEnemy: 0
-  isCanAttack: 0
---- !u!114 &1741651138271158174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741651138271158172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67b2c0ec9489ac4aa395b7eda2a5e41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageText: {fileID: 8752593464231879247}
-  healthText: {fileID: 8735570401763062292}
-  cardTierText: {fileID: 7872421474147963503}
-  manaCostText: {fileID: 7060010668033452157}
-  characterNameText: {fileID: 1741651138486073711}
-  cardTypeText: {fileID: 8058230871528989546}
-  cardDescriptionText: {fileID: 8146598048390625045}
-  cardImage: {fileID: 1741651138270137998}
-  avatarImage: {fileID: 1741651139516295308}
-  avatarBackgroundImage: {fileID: 1741651138476156610}
-  canAttackImageObject: {fileID: 0}
---- !u!114 &1741651138271158168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741651138271158172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70f0163b65e0e044faef741f04975f48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isStatic: 0
-  playerZone: {fileID: 0}
 --- !u!222 &9142178195707234582
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -298,6 +246,70 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1741651138271158169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741651138271158172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea571a9a9002ef4fb5e00b698869b7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardDetails: {fileID: 11400000, guid: 5b182a879399f93498efbd49bd9db23b, type: 2}
+  isEnemy: 0
+  cardSelector: {fileID: 0}
+  cardController: {fileID: 0}
+  isCanAttack: 0
+--- !u!114 &1741651138271158168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741651138271158172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f0163b65e0e044faef741f04975f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8730839935623110640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741651138271158172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8763aeafea44eb3438ed2524a4e25faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseEnterTweenDuration: 0.1
+--- !u!114 &1741651138271158174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741651138271158172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67b2c0ec9489ac4aa395b7eda2a5e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageText: {fileID: 8752593464231879247}
+  healthText: {fileID: 8735570401763062292}
+  cardTierText: {fileID: 7872421474147963503}
+  manaCostText: {fileID: 7060010668033452157}
+  characterNameText: {fileID: 1741651138486073711}
+  cardTypeText: {fileID: 8058230871528989546}
+  cardDescriptionText: {fileID: 8146598048390625045}
+  cardImage: {fileID: 1741651138270137998}
+  avatarImage: {fileID: 1741651139516295308}
+  avatarBackgroundImage: {fileID: 1741651138476156610}
 --- !u!1 &1741651138476156608
 GameObject:
   m_ObjectHideFlags: 0

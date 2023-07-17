@@ -7,12 +7,12 @@ public class RivalsStatsUI : MonoBehaviour
 
     private void OnEnable()
     {
-        GameFlowController.OnAmountOfManaChanched += UpdateManaText;
+        StaticEventsHandler.OnAmountOfManaChanched += UpdateManaText;
     }
 
     private void OnDisable()
     {
-        GameFlowController.OnAmountOfManaChanched -= UpdateManaText;
+        StaticEventsHandler.OnAmountOfManaChanched -= UpdateManaText;
     }
 
     private void UpdateManaText(int currentMana)

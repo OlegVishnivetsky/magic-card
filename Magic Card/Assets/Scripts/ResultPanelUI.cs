@@ -8,14 +8,14 @@ public class ResultPanelUI : MonoBehaviour
 
     private void OnEnable()
     {
-        GameFlowController.OnPlayerWon += ShowWinReslut;
-        GameFlowController.OnPlayerLose += ShowLoseReslut;
+        StaticEventsHandler.OnPlayerWon += ShowWinReslut;
+        StaticEventsHandler.OnPlayerLose += ShowLoseReslut;
     }
 
     private void OnDisable()
     {
-        GameFlowController.OnPlayerWon -= ShowWinReslut;
-        GameFlowController.OnPlayerLose -= ShowLoseReslut;
+        StaticEventsHandler.OnPlayerWon -= ShowWinReslut;
+        StaticEventsHandler.OnPlayerLose -= ShowLoseReslut;
     }
 
     private void Start()

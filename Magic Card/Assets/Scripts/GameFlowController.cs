@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +5,7 @@ using UnityEngine.UI;
 public class GameFlowController : SingletonMonobehaviour<GameFlowController>
 {
     [SerializeField] private Button endTurnButton;
+    public Canvas canvas;
 
     [SerializeField] private Card playerMainCard;
     [SerializeField] private Card enemyMainCard;
@@ -19,14 +19,6 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
     public List<Card> enemyPlacedCard;
 
     private Turn currentTurn = Turn.PlayerTurn;
-
-    public static event Action OnPlayerWon;
-    public static event Action OnPlayerLose;
-
-    public static event Action OnCardAttacked;
-
-    public static event Action<Turn> OnTurnChanged;
-    public static event Action<int> OnAmountOfManaChanched;
 
     private void Start()
     {
@@ -54,7 +46,7 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
     public void SetCurrentMana(int value)
     {
         currentMana = value;
-        OnAmountOfManaChanched?.Invoke(value);
+        StaticEventsHandler.InvokeAmountOfManaChangedEvent(currentMana);
     }
 
     public Turn GetCurrentTurn()
@@ -89,23 +81,17 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
             endTurnButton.interactable = true;
         }
 
-        OnTurnChanged?.Invoke(currentTurn);
+        StaticEventsHandler.InvokeTurnChangedEvent(currentTurn);
     }
 
     private void IncreaseMaxMana()
     {
         currentMana = maxMana;
-        OnAmountOfManaChanched?.Invoke(maxMana);
+        StaticEventsHandler.InvokeAmountOfManaChangedEvent(maxMana);
 
         if (maxMana < 10 && GameFlowController.Instance.GetCurrentTurn() == Turn.PlayerTurn)
         {
             maxMana++;
         }
-    }
-
-    public void InvokeOnCardAttackedEvent()
-    {
-        OnCardAttacked?.Invoke();
-        CheckForPlayerAndEnemtHealth();
     }
 }

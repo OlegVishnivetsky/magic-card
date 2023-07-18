@@ -2,7 +2,9 @@ using UnityEngine;
 
 public static class Settings
 {
-    public const int maxNumberOfPlacedCards = 3;
+    public const int startingNumberOfCards = 6;
+    public const int maxNumberOfPlacedCards = 6;
+    public const int maxNumberOfCardsInHand = 6;
 
     public const float cardStandartYPosition = -600f;
     public const float cardMouseEnterYPosition = -365f;

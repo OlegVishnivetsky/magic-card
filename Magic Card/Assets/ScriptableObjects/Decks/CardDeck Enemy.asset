@@ -10,13 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e42a17773e6f9f94e94e1704d54642b7, type: 3}
-  m_Name: Elf_CardDeck Enemy
+  m_Name: CardDeck Enemy
   m_EditorClassIdentifier: 
   cards:
   - {fileID: 11400000, guid: a749a402f68baac428988b5b8e9739a5, type: 2}
   - {fileID: 11400000, guid: 5b182a879399f93498efbd49bd9db23b, type: 2}
+  - {fileID: 11400000, guid: 788cf0774b1859e45995799609785444, type: 2}
   - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
-  - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
+  - {fileID: 11400000, guid: 788cf0774b1859e45995799609785444, type: 2}
+  - {fileID: 11400000, guid: 2da948408f5066c448a88d3c166b82ad, type: 2}
   - {fileID: 11400000, guid: 5b182a879399f93498efbd49bd9db23b, type: 2}
   - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
+  - {fileID: 11400000, guid: 2da948408f5066c448a88d3c166b82ad, type: 2}
+  - {fileID: 11400000, guid: 5b182a879399f93498efbd49bd9db23b, type: 2}
+  - {fileID: 11400000, guid: a749a402f68baac428988b5b8e9739a5, type: 2}
   isEnemyDeck: 1

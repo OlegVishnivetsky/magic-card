@@ -27,8 +27,7 @@ public class EnemyPlacingCard : MonoBehaviour
     {
         if (turn == Turn.EnemyTurn)
         {
-            StopAllCoroutines();
-            StartCoroutine(PlaceCardRoutine());
+            GameFlowController.Instance.ChangeTurn();
         }
     }
 

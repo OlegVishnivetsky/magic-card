@@ -1,13 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CardHand : MonoBehaviour
 {
     [SerializeField] private CardDeckSO deck;
-    [SerializeField] private int startingNumberOfCards;
     [SerializeField] private bool isHidden;
+
+    [SerializeField] private List<CardDetailsSO> cardsFromDeckList;
+
+    private int turnCount = 0;
+
+    private void OnEnable()
+    {
+        StaticEventsHandler.OnTurnChanged += StaticEventsHandler_OnTurnChanged;
+    }
+
+    private void OnDisable()
+    {
+        StaticEventsHandler.OnTurnChanged -= StaticEventsHandler_OnTurnChanged;
+    }
 
     private void Start()
     {
+        for (int i = 0; i < deck.cards.Count; i++)
+        {
+            cardsFromDeckList.Add(deck.cards[i]);
+        }
+
         SpawnStartingCards();
     }
 
@@ -23,20 +42,90 @@ public class CardHand : MonoBehaviour
 
     private void SpawnStartingCards()
     {
-        for (int i = 0; i <= startingNumberOfCards; i++)
+        TakeCertainAmountOfRandomCardFromDeck(Settings.startingNumberOfCards);
+    }
+
+    private void StaticEventsHandler_OnTurnChanged(Turn turn)
+    {
+        turnCount++;
+
+        if (turnCount % 2 == 0)
         {
-            if (deck.cards.Count < i)
+            turnCount = 0;
+            TakeRandomCardFromDeck();
+        }
+    }
+
+    public void TakeCertainAmountOfRandomCardFromDeck(int amount)
+    {
+        for (int i = 0; i <= amount; i++)
+        {
+            if (cardsFromDeckList.Count == 0)
             {
                 break;
             }
 
-            Card spawnedCard = Instantiate(deck.cards[i].prefab, transform);
-            spawnedCard.SetCardDetails(deck.cards[i]);
-
-            if (deck.isEnemyDeck)
-            {
-                spawnedCard.isEnemy = true;
-            }
+            TakeRandomCardFromDeck();
         }
+    }
+
+    public void TakeCardFromDeckByIndex(int index)
+    {
+        if (!IsCanTakeCard())
+        {
+            return;
+        }
+
+        Card spawnedCard = Instantiate(cardsFromDeckList[index].prefab, transform);
+        spawnedCard.SetCardDetails(cardsFromDeckList[index]);
+
+        cardsFromDeckList.RemoveAt(index);
+
+        if (deck.isEnemyDeck)
+        {
+            spawnedCard.isEnemy = true;
+        }
+    }
+
+    public void TakeRandomCardFromDeck()
+    {
+        if (!IsCanTakeCard())
+        {
+            return;
+        }
+
+        int randomNumber = Random.Range(0, cardsFromDeckList.Count);
+
+        Card spawnedCard = Instantiate(cardsFromDeckList[randomNumber].prefab, transform);
+        spawnedCard.SetCardDetails(cardsFromDeckList[randomNumber]);
+
+        cardsFromDeckList.RemoveAt(randomNumber);
+
+        if (deck.isEnemyDeck)
+        {
+            spawnedCard.isEnemy = true;
+        }
+    }
+
+    private bool IsCanTakeCard()
+    {
+        int numberOfCardsInHand = 0;
+
+        if (cardsFromDeckList.Count == 0)
+        {
+            return false;
+        }
+
+        foreach (Card card in GetComponentsInChildren<Card>())
+        {
+            numberOfCardsInHand++;
+        }
+
+        if (numberOfCardsInHand >= Settings.maxNumberOfCardsInHand)
+        {
+            return false;
+        }
+
+        return true;
     }
 }

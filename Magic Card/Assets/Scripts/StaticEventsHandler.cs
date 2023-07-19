@@ -23,10 +23,38 @@ public static class StaticEventsHandler
         OnPlayerLose?.Invoke();
     }
 
-    public static event Action<int> OnAmountOfManaChanched;
+    public static event Action<int> OnPlayerAmountOfHealthChanged;
 
-    public static void InvokeAmountOfManaChangedEvent(int amount)
+    public static void InvokePlayerAmountOfHealthChangedEvent(int currentHealth)
     {
-        OnAmountOfManaChanched?.Invoke(amount);
+        OnPlayerAmountOfHealthChanged?.Invoke(currentHealth);
+    }
+
+    public static event Action<int> OnEnemyAmountOfHealthChanged;
+
+    public static void InvokeEnemyAmountOfHealthChangedEvent(int currentHealth)
+    {
+        OnEnemyAmountOfHealthChanged?.Invoke(currentHealth);
+    }
+
+    public static event Action<int> OnPlayerAmountOfManaChanged;
+
+    public static void InvokePlayerAmountOfManaChangedEvent(int currentMana)
+    {
+        OnPlayerAmountOfManaChanged?.Invoke(currentMana);
+    }
+
+    public static event Action<int> OnEnemyAmountOfManaChanged;
+
+    public static void InvokeEnemyAmountOfManaChangedEvent(int currentMana)
+    {
+        OnEnemyAmountOfManaChanged?.Invoke(currentMana);
+    }
+
+    public static event Action<Card> OnCardPlaced;
+
+    public static void InvokeCardPlacedEvent(Card placedCard)
+    {
+        OnCardPlaced?.Invoke(placedCard);
     }
 }

@@ -10,6 +10,8 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     private Camera cameraCache;
     private CanvasGroup canvasGroup;
 
+    private bool isCanDragPlacedCard;
+
     private Vector2 draggedCardStartPosition;
 
     private void Awake()
@@ -32,6 +34,8 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        isCanDragPlacedCard = GetComponent<PlacedCard>() != null && !card.isCanAttack;
+
         if (!IsAllowedToControlCard())
         {
             return;
@@ -52,6 +56,11 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     public void OnDrag(PointerEventData eventData)
     {
         if (!IsAllowedToControlCard())
+        {
+            return;
+        }
+
+        if (isCanDragPlacedCard)
         {
             return;
         }
@@ -89,19 +98,4 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
         return true;
     }
-
-    //public void OnDrop(PointerEventData eventData)
-    //{
-    //    if (card.isPlaced)
-    //    {
-    //        Card cardToAttack = eventData.pointerDrag.GetComponent<Card>();
-
-    //        if (!card.isEnemy)
-    //        {
-    //            return;
-    //        }
-
-    //        cardToAttack.AttackCard(card);        
-    //    }
-    //}
 }

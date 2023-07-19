@@ -2,6 +2,8 @@ using UnityEngine;
 
 public static class Settings
 {
+    public const int standardAmountOfRivalsHealth = 30;
+    public const int standardAmountOfRivalsMana = 1;
     public const int startingNumberOfCards = 6;
     public const int maxNumberOfPlacedCards = 6;
     public const int maxNumberOfCardsInHand = 6;

@@ -23,14 +23,14 @@ public class RivalsStats : MonoBehaviour
 
     private void Start()
     {
-        playerCurrentMana = Settings.standardAmountOfRivalsMana;
-        enemyCurrentMana = Settings.standardAmountOfRivalsMana;
+        playerCurrentMana = Settings.startingAmountOfRivalsMana;
+        enemyCurrentMana = Settings.startingAmountOfRivalsMana;
 
-        playerCurrentHealth = Settings.standardAmountOfRivalsHealth;
-        enemyCurrentHealth = Settings.standardAmountOfRivalsHealth;
+        playerCurrentHealth = Settings.startingAmountOfRivalsHealth;
+        enemyCurrentHealth = Settings.startingAmountOfRivalsHealth;
 
-        playerMaxMana = Settings.standardAmountOfRivalsMana;
-        enemyMaxMana = Settings.standardAmountOfRivalsMana;
+        playerMaxMana = Settings.startingAmountOfRivalsMana;
+        enemyMaxMana = Settings.startingAmountOfRivalsMana;
 
         StaticEventsHandler.InvokePlayerAmountOfHealthChangedEvent(playerCurrentHealth);
         StaticEventsHandler.InvokePlayerAmountOfManaChangedEvent(playerCurrentMana);
@@ -78,12 +78,24 @@ public class RivalsStats : MonoBehaviour
         if (turn == Turn.PlayerTurn)
         {
             enemyMaxMana++;
+
+            if (enemyMaxMana > Settings.maxAmountOfRivalsMana)
+            {
+                enemyMaxMana--;
+            }
+
             ResetEnemyMana();
             
         }
         else
         {
             playerMaxMana++;
+
+            if (playerMaxMana > Settings.maxAmountOfRivalsMana)
+            {
+                playerMaxMana--;
+            }
+
             ResetPlayerMana();
         }
     }

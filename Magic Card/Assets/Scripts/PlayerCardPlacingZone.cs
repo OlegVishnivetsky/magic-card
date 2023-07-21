@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,12 +11,24 @@ public class PlayerCardPlacingZone : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
+        CheckForNumberOfPlacedCards();
+
         if (numberOfPlacedCards >= Settings.maxNumberOfPlacedCards)
         {
             return;
         }
 
+        if (GameFlowController.Instance.GetCurrentTurn() == Turn.EnemyTurn)
+        {
+            return;
+        }
+
         Card card = eventData.pointerDrag.GetComponent<Card>();
+
+        if (card.GetComponent<PlacedCard>() != null )
+        {
+            return;
+        }
 
         if (rivalsStats.GetPlayerCurrentMana() - card.GetCardDetails().manaCost < 0)
         {
@@ -31,5 +44,10 @@ public class PlayerCardPlacingZone : MonoBehaviour, IDropHandler
         StaticEventsHandler.InvokeCardPlacedEvent(card);
 
         numberOfPlacedCards++;
+    }
+
+    private void CheckForNumberOfPlacedCards()
+    {
+        numberOfPlacedCards = transform.GetComponentsInChildren<PlacedCard>().ToList().Count;
     }
 }

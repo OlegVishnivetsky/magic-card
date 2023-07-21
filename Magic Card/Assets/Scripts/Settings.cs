@@ -8,7 +8,7 @@ public static class Settings
 
     public const int startingNumberOfCards = 6;
 
-    public const int maxNumberOfPlacedCards = 6;
+    public const int maxNumberOfPlacedCards = 5;
     public const int maxNumberOfCardsInHand = 6;
 
     public const float cardStandartYPosition = -600f;

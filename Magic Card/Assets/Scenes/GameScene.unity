@@ -178,7 +178,7 @@ MonoBehaviour:
     m_Top: -30
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 70
+  m_Spacing: 30
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -4320,6 +4320,7 @@ GameObject:
   - component: {fileID: 2122728888}
   - component: {fileID: 2122728890}
   - component: {fileID: 2122728889}
+  - component: {fileID: 2122728892}
   - component: {fileID: 2122728891}
   m_Layer: 5
   m_Name: Enemy Placed Zone
@@ -4400,9 +4401,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rivalsStats: {fileID: 323104081}
+  enemyAttackAI: {fileID: 2122728892}
   enemyHandTransform: {fileID: 949195954}
   enemyPlacedZoneTransform: {fileID: 55415953}
   placingCardDelay: 1.5
+--- !u!114 &2122728892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122728887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74d11eb39da1f24db4a4a27888de428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDelay: 1
+  enemyPlacedCards: []
+  playerPlacedCards: []
 --- !u!1 &2142044618
 GameObject:
   m_ObjectHideFlags: 0

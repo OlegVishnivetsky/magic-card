@@ -6,7 +6,7 @@ public class Card : MonoBehaviour
 {
     [SerializeField] private CardDetailsSO cardDetails;
 
-    [HideInInspector] public bool isEnemy;
+    public bool isEnemy;
 
     [HideInInspector] public CardSelector cardSelector;
     [HideInInspector] public CardController cardController;
@@ -57,7 +57,10 @@ public class Card : MonoBehaviour
 
     private void GameController_OnTurnChanged(Turn turn)
     {
-        isCanAttack = true;        
+        if (gameObject.GetComponent<PlacedCard>() != null)
+        {
+            isCanAttack = true;
+        }    
     }
 
     public CardDetailsSO GetCardDetails()
@@ -82,6 +85,8 @@ public class Card : MonoBehaviour
 
         GetComponent<CardUI>().UpdateCardText();
         target.GetComponent<CardUI>().UpdateCardText();
+
+        isCanAttack = false;
 
         if (target.GetCardHealth() <= 0)
         {

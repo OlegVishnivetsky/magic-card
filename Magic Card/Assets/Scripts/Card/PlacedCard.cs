@@ -1,24 +1,31 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlacedCard : MonoBehaviour, IDropHandler
+public class PlacedCard : MonoBehaviour, IEndDragHandler
 {
-    private Card card;
+    [SerializeField] private Card card;
 
     private void Awake()
     {
         card = GetComponent<Card>();
     }
 
-    public void OnDrop(PointerEventData eventData)
+    public void OnEndDrag(PointerEventData eventData)
     {
-        Card pointerDragCard = eventData.pointerDrag.GetComponent<Card>();
-
-        if (!pointerDragCard.isEnemy)
+        if (card.isEnemy)
         {
             return;
         }
 
-        card.AttackCard(pointerDragCard);
+        if (eventData.pointerCurrentRaycast.gameObject.GetComponent<Card>() != null)
+        {
+            Card cardToAttack = eventData.pointerCurrentRaycast.gameObject.GetComponent<Card>();
+
+            if (cardToAttack.isEnemy)
+            {
+                card.AttackCard(cardToAttack);
+                cardToAttack = null;
+            }
+        }
     }
 }

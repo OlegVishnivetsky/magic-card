@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class EnemyPlacingCard : MonoBehaviour
 {
-    [Header("RIVALS STATS")]
+    [Header("MAIN COMPONENTS")]
     [SerializeField] private RivalsStats rivalsStats;
+    [SerializeField] private EnemyAttackAI enemyAttackAI;
     [Header("TRANFORM COMPONENTS")]
     [SerializeField] private Transform enemyHandTransform;
     [SerializeField] private Transform enemyPlacedZoneTransform;
@@ -30,7 +31,9 @@ public class EnemyPlacingCard : MonoBehaviour
     private void Start()
     {
         if (GameFlowController.Instance.GetCurrentTurn() == Turn.EnemyTurn)
+        {
             StartCoroutine(PlaceCardRoutine());
+        }
     }
 
     private void Instance_OnTurnChanged(Turn turn)
@@ -44,9 +47,11 @@ public class EnemyPlacingCard : MonoBehaviour
     private IEnumerator PlaceCardRoutine()
     {
         cards = enemyHandTransform.GetComponentsInChildren<Card>().ToList();
-        
+
         for (int i = 0; i <= cards.Count - 1; i++)
         {
+            CheckForNumberOfPlacedCards();
+
             if (rivalsStats.GetEnemyCurrentMana() - cards[i].GetCardDetails().manaCost >= 0)
             {
                 yield return new WaitForSeconds(placingCardDelay);
@@ -63,12 +68,19 @@ public class EnemyPlacingCard : MonoBehaviour
                 cardToPlace.gameObject.AddComponent<PlacedCard>();
                 cardToPlace.GetComponent<CardUI>().UpdateCardUI();
 
+                StaticEventsHandler.InvokeCardPlacedEvent(cardToPlace);
+
                 cards.Remove(cardToPlace);
             }
 
             yield return null;
         }
 
-        GameFlowController.Instance.ChangeTurn();
+        enemyAttackAI.Attack();
+    }
+
+    private void CheckForNumberOfPlacedCards()
+    {
+        numberOfPlacedCards = enemyPlacedZoneTransform.GetComponentsInChildren<PlacedCard>().ToList().Count;
     }
 }

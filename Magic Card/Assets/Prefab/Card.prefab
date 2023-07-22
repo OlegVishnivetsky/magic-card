@@ -194,7 +194,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 271.5653, y: 387.9504}
+  m_SizeDelta: {x: 270, y: 387}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9142178195707234582
 CanvasRenderer:
@@ -259,9 +259,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardDetails: {fileID: 11400000, guid: 5b182a879399f93498efbd49bd9db23b, type: 2}
+  cardSelector: {fileID: 8730839935623110640}
+  cardController: {fileID: 1741651138271158168}
   isEnemy: 0
-  cardSelector: {fileID: 0}
-  cardController: {fileID: 0}
   isCanAttack: 0
 --- !u!114 &1741651138271158168
 MonoBehaviour:

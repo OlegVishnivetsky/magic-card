@@ -5,12 +5,17 @@ public class SceneController : MonoBehaviour
 {
     public void LoadGameScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(Settings.gameSceneSctring);
     }
 
     public void LoadMenuScene()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(Settings.mainMenuSceneString);
+    }
+
+    public void LoadEditDeckScene()
+    {
+        SceneManager.LoadScene(Settings.editDeckScene);
     }
 
     public void ExitGame()

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 48e54e6e19c8c9c4f8230526628594b9
+guid: 1992ee08346f0854fa2cabf07f1c1cb1
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Belwe Bd BT
+  - Hero archer free version
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

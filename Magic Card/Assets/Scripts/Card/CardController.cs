@@ -26,6 +26,11 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     private void Start()
     {
+        if (cardHand == null)
+        {
+            return;
+        }
+
         if (cardHand.GetCardDeck().isEnemyDeck)
         {
             GetComponent<CardUI>().HideCardUI();

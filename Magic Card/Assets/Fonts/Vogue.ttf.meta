@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2f9f504cdcd1dd049b37722695a4c557
+guid: a9741462b8c96dc459d356497a9bee01
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - DRAGON HUNTER
+  - Vogue
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

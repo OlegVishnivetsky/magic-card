@@ -19,4 +19,8 @@ public static class Settings
     public static Color cardBTierColor = new Color(0f, 121f, 246f);
     public static Color cardCTierColor = new Color(246f, 0f, 246f);
     public static Color cardDTierColor = new Color(145f, 145f, 145f);
+
+    public const string mainMenuSceneString = "MainMenuScene";
+    public const string gameSceneSctring = "GameScene";
+    public const string editDeckScene = "EditDeckScene";
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c01187f1c16f8a14981adf0668a5c5e7
+guid: a378a5b8d1a09d64281e7f07443ea860
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Franklin Gothic Book
+  - Harry Potter (Russian Version of Gfdtk)
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

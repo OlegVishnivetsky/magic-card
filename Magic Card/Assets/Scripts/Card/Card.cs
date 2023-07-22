@@ -1,25 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CardSelector))]
-[RequireComponent(typeof(CardController))]
 public class Card : MonoBehaviour
 {
     [SerializeField] private CardDetailsSO cardDetails;
 
-    public bool isEnemy;
+    public CardSelector cardSelector;
+    public CardController cardController;
 
-    [HideInInspector] public CardSelector cardSelector;
-    [HideInInspector] public CardController cardController;
-
-    public bool isCanAttack;
+    [HideInInspector] public bool isEnemy;
+    [HideInInspector] public bool isCanAttack;
 
     private int health;
-
-    private void Awake()
-    {
-        cardSelector = GetComponent<CardSelector>();
-        cardController = GetComponent<CardController>();
-    }
 
     private void OnEnable()
     {

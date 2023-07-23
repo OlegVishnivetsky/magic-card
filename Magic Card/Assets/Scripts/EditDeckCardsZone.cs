@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class EditDeckCardsZone : MonoBehaviour
+public class EditDeckCardsZone : MonoBehaviour, IDropHandler
 {
     [Header("CARDS")]
     [SerializeField] private CardsCollectionSO cardsCollection;
 
-    [Header("TRANSFORM COMPONENTS")]
+    [Header("OTHER COMPONENTS")]
+    [SerializeField] private CurrentDeckZone currentDeckZone;
     [SerializeField] private Transform cardsTransform;
 
     private void Start()
@@ -23,6 +25,16 @@ public class EditDeckCardsZone : MonoBehaviour
 
             Destroy(cardObject.GetComponent<CardSelector>());
             Destroy(cardObject.GetComponent<CardController>());
+        }
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        Card cardToRemove = eventData.pointerDrag.GetComponent<Card>();
+
+        if (cardToRemove != null)
+        {
+            currentDeckZone.RemoveCardFromCurrentDeck(cardToRemove);
         }
     }
 }

@@ -17,6 +17,11 @@ public class CardForEditDeckController : MonoBehaviour, IDragHandler, IBeginDrag
 
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
+        GetNewGridLayoutGroupComponent();
+    }
+
+    public void GetNewGridLayoutGroupComponent()
+    {
         gridLayoutGroup = GetComponentInParent<GridLayoutGroup>();
     }
 

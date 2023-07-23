@@ -313,7 +313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cards
+  m_text: Cards (Drag here to remove)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6087,6 +6087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsCollection: {fileID: 11400000, guid: cb0f4f3d933d3de448b12e7009c0e6b5, type: 2}
+  currentDeckZone: {fileID: 1989134884}
   cardsTransform: {fileID: 1191590795}
 --- !u!1 &1191590794
 GameObject:
@@ -7212,6 +7213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1989134883}
+  - component: {fileID: 1989134885}
   - component: {fileID: 1989134884}
   m_Layer: 5
   m_Name: CurrentDeck
@@ -7257,6 +7259,14 @@ MonoBehaviour:
   playerDeck: {fileID: 11400000, guid: dda7e0539dbede04c86d68a93b737228, type: 2}
   enemyDeck: {fileID: 11400000, guid: 780a4ac768d087e47a02495a10c7f039, type: 2}
   deckContentTransform: {fileID: 1789996165}
+--- !u!222 &1989134885
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989134882}
+  m_CullTransparentMesh: 1
 --- !u!1001 &6033614002715015299
 PrefabInstance:
   m_ObjectHideFlags: 0

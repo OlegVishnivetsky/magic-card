@@ -4,6 +4,7 @@ public class EditDeckCardsZone : MonoBehaviour
 {
     [Header("CARDS")]
     [SerializeField] private CardsCollectionSO cardsCollection;
+
     [Header("TRANSFORM COMPONENTS")]
     [SerializeField] private Transform cardsTransform;
 

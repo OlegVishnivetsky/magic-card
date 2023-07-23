@@ -2,8 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardSelector : MonoBehaviour, IPointerEnterHandler,
-    IPointerExitHandler
+public class CardSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private float mouseEnterTweenDuration = 0.1f;
 

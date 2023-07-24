@@ -51,7 +51,7 @@ public class Card : MonoBehaviour
         if (gameObject.GetComponent<PlacedCard>() != null)
         {
             isCanAttack = true;
-        }    
+        }
     }
 
     public CardDetailsSO GetCardDetails()

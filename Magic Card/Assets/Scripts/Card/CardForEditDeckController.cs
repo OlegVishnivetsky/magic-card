@@ -11,6 +11,8 @@ public class CardForEditDeckController : MonoBehaviour, IDragHandler, IBeginDrag
     private Camera cameraCache;
     private Vector3 draggedCardStartPosition;
 
+    private EditDeckCardsZone editDeckCardsZone;
+
     private void Awake()
     {
         cameraCache = Camera.main;
@@ -18,6 +20,11 @@ public class CardForEditDeckController : MonoBehaviour, IDragHandler, IBeginDrag
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
         GetNewGridLayoutGroupComponent();
+    }
+
+    public void SetEditDeckCardsZone(EditDeckCardsZone editDeckCardsZone)
+    {
+        this.editDeckCardsZone = editDeckCardsZone;
     }
 
     public void GetNewGridLayoutGroupComponent()
@@ -28,7 +35,7 @@ public class CardForEditDeckController : MonoBehaviour, IDragHandler, IBeginDrag
     public void OnBeginDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = false;
-        draggedCardStartPosition = transform.localPosition; 
+        draggedCardStartPosition = transform.localPosition;
         transform.SetParent(canvas.transform);
     }
 
@@ -42,6 +49,11 @@ public class CardForEditDeckController : MonoBehaviour, IDragHandler, IBeginDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (editDeckCardsZone != null)
+        {
+            editDeckCardsZone.ResetCardsSort();
+        }
+
         canvasGroup.blocksRaycasts = true;
 
         transform.SetParent(gridLayoutGroup.transform);

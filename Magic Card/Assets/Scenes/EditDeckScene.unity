@@ -6089,6 +6089,8 @@ MonoBehaviour:
   cardsCollection: {fileID: 11400000, guid: cb0f4f3d933d3de448b12e7009c0e6b5, type: 2}
   currentDeckZone: {fileID: 1989134884}
   cardsTransform: {fileID: 1191590795}
+  sortType: 1
+  sortingOrderType: 0
 --- !u!1 &1191590794
 GameObject:
   m_ObjectHideFlags: 0

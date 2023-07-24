@@ -17,7 +17,6 @@ public class CurrentDeckZone : MonoBehaviour, IDropHandler
     private CardDeckSO currentDeckToEdit;
 
     public event Action<bool> OnCurrentDeckToEditChanged;
-    public event Action OnCardEnteredRemovingZone;
 
     private void Start()
     {
@@ -37,12 +36,12 @@ public class CurrentDeckZone : MonoBehaviour, IDropHandler
         Card card = eventData.pointerDrag.GetComponent<Card>();
 
         if (card != null)
-        {           
+        {
             if (spawnedCardsFromDeck.Contains(card))
             {
                 return;
             }
-           
+
             currentDeckToEdit.cards.Add(card.GetCardDetails());
             InstantiateCard(card.GetCardDetails());
         }
@@ -79,7 +78,7 @@ public class CurrentDeckZone : MonoBehaviour, IDropHandler
     private void InstantiateCard(CardDetailsSO cardDetails)
     {
         Card cardObject = Instantiate(cardDetails.prefab, deckContentTransform);
-        cardObject.SetCardDetails(cardDetails);  
+        cardObject.SetCardDetails(cardDetails);
         cardObject.gameObject.AddComponent<CardForEditDeckController>().GetNewGridLayoutGroupComponent();
 
         Destroy(cardObject.GetComponent<CardSelector>());

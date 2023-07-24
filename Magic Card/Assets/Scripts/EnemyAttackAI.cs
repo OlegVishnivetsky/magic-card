@@ -6,8 +6,8 @@ public class EnemyAttackAI : MonoBehaviour
 {
     [SerializeField] private float attackDelay;
 
-    [SerializeField] private List<Card> enemyPlacedCards = new List<Card>();
-    [SerializeField] private List<Card> playerPlacedCards = new List<Card>();
+    private List<Card> enemyPlacedCards = new List<Card>();
+    private List<Card> playerPlacedCards = new List<Card>();
 
     private void OnEnable()
     {

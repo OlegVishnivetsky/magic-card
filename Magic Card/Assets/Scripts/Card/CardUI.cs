@@ -10,7 +10,6 @@ public class CardUI : MonoBehaviour
 
     [Header("TEXT COMPONENTS")]
     [SerializeField] private TextMeshProUGUI damageText;
-
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI cardTierText;
     [SerializeField] private TextMeshProUGUI manaCostText;

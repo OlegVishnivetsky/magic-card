@@ -25,7 +25,7 @@ public class PlayerCardPlacingZone : MonoBehaviour, IDropHandler
 
         Card card = eventData.pointerDrag.GetComponent<Card>();
 
-        if (card.GetComponent<PlacedCard>() != null )
+        if (card.GetComponent<PlacedCard>() != null)
         {
             return;
         }

@@ -14,9 +14,21 @@ public enum CardType
 
 public enum CardTier
 {
-    S,
-    A,
-    B,
+    D,
     C,
-    D
+    B,
+    A,
+    S
+}
+
+public enum SortType
+{
+    ByManaCost,
+    ByRarity
+}
+
+public enum SortingOrderType
+{
+    Descending,
+    Ascending
 }

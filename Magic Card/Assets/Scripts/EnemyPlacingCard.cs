@@ -8,9 +8,11 @@ public class EnemyPlacingCard : MonoBehaviour
     [Header("MAIN COMPONENTS")]
     [SerializeField] private RivalsStats rivalsStats;
     [SerializeField] private EnemyAttackAI enemyAttackAI;
+
     [Header("TRANFORM COMPONENTS")]
     [SerializeField] private Transform enemyHandTransform;
     [SerializeField] private Transform enemyPlacedZoneTransform;
+
     [Header("PLACING FLOAT PARAMETERS")]
     [SerializeField] private float placingCardDelay = 1f;
 

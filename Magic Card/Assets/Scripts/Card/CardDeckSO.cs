@@ -6,5 +6,6 @@ public class CardDeckSO : ScriptableObject
 {
     [Header("DECK")]
     public List<CardDetailsSO> cards;
+
     public bool isEnemyDeck = false;
 }

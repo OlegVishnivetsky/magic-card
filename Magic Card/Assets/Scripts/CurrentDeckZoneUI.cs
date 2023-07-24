@@ -1,10 +1,11 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class CurrentDeckZoneUI : MonoBehaviour
 {
     [Header("CURRENT DECK ZONE")]
     [SerializeField] private CurrentDeckZone currentDeckZone;
+
     [Header("TEXT COMPONENTS")]
     [SerializeField] private TextMeshProUGUI currentDeckToEditText;
 

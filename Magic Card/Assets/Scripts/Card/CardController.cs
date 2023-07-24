@@ -21,7 +21,6 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         card = GetComponent<Card>();
         canvasGroup = GetComponent<CanvasGroup>();
         cardHand = GetComponentInParent<CardHand>();
-
     }
 
     private void Start()

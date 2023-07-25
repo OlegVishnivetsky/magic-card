@@ -11,9 +11,8 @@ public class EditDeckCardsZone : MonoBehaviour, IDropHandler
     [SerializeField] private CurrentDeckZone currentDeckZone;
     [SerializeField] private Transform cardsTransform;
 
-    [Header("SORT PARAMETERS")]
-    [SerializeField] private SortType sortType;
-    [SerializeField] private SortingOrderType sortingOrderType;
+    private SortType sortType;
+    private SortingOrderType sortingOrderType;
 
     private SortHelper sortHelper;
 
@@ -42,7 +41,21 @@ public class EditDeckCardsZone : MonoBehaviour, IDropHandler
         }
     }
 
-    public void ResetCardsSort()
+    public void SetSortTypeAndUpdateCardsSort(SortType sortType)
+    {
+        this.sortType = sortType;
+
+        UpdateCardsSort();
+    }
+
+    public void SetSortingOrderAndUpdateCardsSort(SortingOrderType sortingOrderType)
+    {
+        this.sortingOrderType = sortingOrderType;
+
+        UpdateCardsSort();
+    }
+
+    public void UpdateCardsSort()
     {
         RemoveAllSpawnedCards();
         InstantiateCardsCollection();
@@ -55,7 +68,7 @@ public class EditDeckCardsZone : MonoBehaviour, IDropHandler
             cardDetailsList.Add(cardDetails);
         }
 
-        sortHelper.SortCardListBySortType(cardDetailsList, sortType, sortingOrderType);
+        sortHelper.SortCardList(cardDetailsList, sortType, sortingOrderType);
 
         foreach (CardDetailsSO cardDetails in cardDetailsList)
         {

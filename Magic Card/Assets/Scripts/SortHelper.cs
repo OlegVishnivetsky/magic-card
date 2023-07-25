@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class SortHelper
 {
-    public void SortCardListBySortType(List<CardDetailsSO> cards, SortType sortType, SortingOrderType sortingOrderType)
+    public void SortCardList(List<CardDetailsSO> cards, SortType sortType, SortingOrderType sortingOrderType)
     {
         switch (sortType)
         {

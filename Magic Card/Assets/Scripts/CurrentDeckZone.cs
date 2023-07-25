@@ -23,14 +23,6 @@ public class CurrentDeckZone : MonoBehaviour, IDropHandler
         SetCurrentDeckAndInstantiateCardsFromPlayerDeck();
     }
 
-    public void RemoveCardFromCurrentDeck(Card card)
-    {
-        currentDeckToEdit.cards.Remove(card.GetCardDetails());
-        spawnedCardsFromDeck.Remove(card);
-
-        Destroy(card.gameObject);
-    }
-
     public void OnDrop(PointerEventData eventData)
     {
         Card card = eventData.pointerDrag.GetComponent<Card>();
@@ -45,6 +37,14 @@ public class CurrentDeckZone : MonoBehaviour, IDropHandler
             currentDeckToEdit.cards.Add(card.GetCardDetails());
             InstantiateCard(card.GetCardDetails());
         }
+    }
+
+    public void RemoveCardFromCurrentDeck(Card card)
+    {
+        currentDeckToEdit.cards.Remove(card.GetCardDetails());
+        spawnedCardsFromDeck.Remove(card);
+
+        Destroy(card.gameObject);
     }
 
     public void SetCurrentDeckAndInstantiateCardsFromPlayerDeck()

@@ -51,7 +51,7 @@ public class CardForEditDeckController : MonoBehaviour, IDragHandler, IBeginDrag
     {
         if (editDeckCardsZone != null)
         {
-            editDeckCardsZone.ResetCardsSort();
+            editDeckCardsZone.UpdateCardsSort();
         }
 
         canvasGroup.blocksRaycasts = true;

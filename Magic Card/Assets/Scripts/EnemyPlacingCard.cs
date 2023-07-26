@@ -54,7 +54,7 @@ public class EnemyPlacingCard : MonoBehaviour
         {
             CheckForNumberOfPlacedCards();
 
-            if (rivalsStats.GetEnemyCurrentMana() - cards[i].GetCardDetails().manaCost >= 0)
+            if (rivalsStats.GetEnemyCurrentMana() - cards[i].GetCardDetails().cardData.manaCost >= 0)
             {
                 yield return new WaitForSeconds(placingCardDelay);
 
@@ -63,7 +63,7 @@ public class EnemyPlacingCard : MonoBehaviour
                     break;
                 }
 
-                rivalsStats.SpendEnemyMana(cards[i].GetCardDetails().manaCost);
+                rivalsStats.SpendEnemyMana(cards[i].GetCardDetails().cardData.manaCost);
 
                 Card cardToPlace = cards[i];
                 cardToPlace.transform.SetParent(enemyPlacedZoneTransform);

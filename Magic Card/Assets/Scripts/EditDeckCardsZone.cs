@@ -72,7 +72,7 @@ public class EditDeckCardsZone : MonoBehaviour, IDropHandler
 
         foreach (CardDetailsSO cardDetails in cardDetailsList)
         {
-            Card cardObject = Instantiate(cardDetails.prefab, cardsTransform);
+            Card cardObject = Instantiate(cardDetails.cardData.prefab, cardsTransform);
             cardObject.SetCardDetails(cardDetails);
             cardObject.gameObject.AddComponent<CardForEditDeckController>().SetEditDeckCardsZone(this);
 

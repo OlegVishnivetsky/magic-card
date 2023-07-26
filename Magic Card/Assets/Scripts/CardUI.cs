@@ -43,31 +43,31 @@ public class CardUI : MonoBehaviour
     public void UpdateCardText()
     {
         if (damageText != null)
-            damageText.text = card.GetCardDetails().damage.ToString();
+            damageText.text = card.GetCardDetails().cardData.damage.ToString();
         if (healthText != null)
             healthText.text = card.GetCardHealth().ToString();
         if (manaCostText != null)
-            manaCostText.text = card.GetCardDetails().manaCost.ToString();
+            manaCostText.text = card.GetCardDetails().cardData.manaCost.ToString();
         if (cardTypeText != null)
-            cardTypeText.text = Enum.GetName(typeof(CardType), card.GetCardDetails().cardType);
+            cardTypeText.text = Enum.GetName(typeof(CardType), card.GetCardDetails().cardData.cardType);
         if (cardTierText != null)
-            cardTierText.text = Enum.GetName(typeof(CardTier), card.GetCardDetails().cardTier);
+            cardTierText.text = Enum.GetName(typeof(CardTier), card.GetCardDetails().cardData.cardTier);
         if (cardDescriptionText != null)
-            cardDescriptionText.text = card.GetCardDetails().cardDescription;
+            cardDescriptionText.text = card.GetCardDetails().cardData.cardDescription;
     }
 
     public void UpdateCardImages()
     {
         if (avatarImage != null && avatarBackgroundImage != null)
         {
-            avatarImage.sprite = card.GetCardDetails().characterAvatarSprite;
-            avatarBackgroundImage.sprite = card.GetCardDetails().avatarBackgroundSprite;
+            avatarImage.sprite = Resources.Load<Sprite>(card.GetCardDetails().cardData.characterAvatarSpritePath);
+            avatarBackgroundImage.sprite = Resources.Load<Sprite>(card.GetCardDetails().cardData.avatarBackgroundSpritePath);
         }
     }
 
     public void HideCardUI()
     {
-        avatarBackgroundImage.sprite = card.GetCardDetails().avatarBackgroundSprite;
+        avatarBackgroundImage.sprite = Resources.Load<Sprite>(card.GetCardDetails().cardData.avatarBackgroundSpritePath);
         avatarImage.sprite = null;
 
         manaCostText.text = "";
@@ -81,12 +81,12 @@ public class CardUI : MonoBehaviour
     private void UpdateCharacterName()
     {
         if (characterNameText != null)
-            characterNameText.text = card.GetCardDetails().characterName;
+            characterNameText.text = card.GetCardDetails().cardData.characterName;
     }
 
     private void SetCardColorByTier()
     {
-        switch (card.GetCardDetails().cardTier)
+        switch (card.GetCardDetails().cardData.cardTier)
         {
             case CardTier.S:
                 cardImage.color = Settings.cardSTierColor;

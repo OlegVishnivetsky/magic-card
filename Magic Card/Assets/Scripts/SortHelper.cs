@@ -33,11 +33,11 @@ public class SortHelper
 
     private static Comparison<CardDetailsSO> SortByManaCost()
     {
-        return (card1, card2) => card1.manaCost.CompareTo(card2.manaCost);
+        return (card1, card2) => card1.cardData.manaCost.CompareTo(card2.cardData.manaCost);
     }
 
     private static Comparison<CardDetailsSO> SortByRarity()
     {
-        return (card1, card2) => card1.cardTier.CompareTo(card2.cardTier);
+        return (card1, card2) => card1.cardData.cardTier.CompareTo(card2.cardData.cardTier);
     }
 }

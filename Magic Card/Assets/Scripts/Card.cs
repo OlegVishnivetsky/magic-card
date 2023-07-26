@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 public class Card : MonoBehaviour
 {
     [SerializeField] private CardDetailsSO cardDetails;
@@ -24,9 +25,9 @@ public class Card : MonoBehaviour
 
     private void Start()
     {
-        health = cardDetails.health;
+        health = cardDetails.cardData.health;
 
-        if (cardDetails.cardType == CardType.Rush)
+        if (cardDetails.cardData.cardType == CardType.Rush)
         {
             isCanAttack = true;
         }
@@ -64,6 +65,11 @@ public class Card : MonoBehaviour
         this.cardDetails = cardDetails;
     }
 
+    public void SetCardDetailsData(CardDetailsData cardDetailsData)
+    {
+        this.cardDetails.cardData = cardDetailsData;
+    }
+
     public void AttackCard(Card target)
     {
         if (!isCanAttack)
@@ -71,8 +77,8 @@ public class Card : MonoBehaviour
             return;
         }
 
-        health -= target.GetCardDetails().damage;
-        target.DecreaseHealth(cardDetails.damage);
+        health -= target.GetCardDetails().cardData.damage;
+        target.DecreaseHealth(cardDetails.cardData.damage);
 
         GetComponent<CardUI>().UpdateCardText();
         target.GetComponent<CardUI>().UpdateCardText();

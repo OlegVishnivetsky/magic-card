@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d84bba7bb0312418b583b348e5be30, type: 3}
   m_Name: Lalafell_CardDetails
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1741651138271158169, guid: 3143e6dd5d651d54d89f042f667751db, type: 3}
-  damage: 2
-  health: 7
-  manaCost: 4
-  cardTier: 1
-  cardType: 3
-  characterName: Lalafell
-  cardDescription: 
-  characterAvatarSprite: {fileID: 21300000, guid: 86b158b20b5534949b784e19d057455e, type: 3}
-  avatarBackgroundSprite: {fileID: 21300000, guid: a3e31725045765c4b8c5f60b1e57ee29, type: 3}
+  cardData:
+    prefab: {fileID: 1741651138271158169, guid: 3143e6dd5d651d54d89f042f667751db, type: 3}
+    damage: 7
+    health: 2
+    manaCost: 6
+    cardTier: 1
+    cardType: 0
+    characterName: Lalafell
+    cardDescription: 
+    characterAvatarSpritePath: Textures/CaptainCatSparrow/Portraits_1/Human/Human_6
+    avatarBackgroundSpritePath: Textures/CaptainCatSparrow/Portraits_1/Backgrounds/Background_2

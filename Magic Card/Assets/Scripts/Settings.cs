@@ -23,4 +23,6 @@ public static class Settings
     public const string mainMenuSceneString = "MainMenuScene";
     public const string gameSceneSctring = "GameScene";
     public const string editDeckScene = "EditDeckScene";
+
+    public const string savePath = "/saves/";
 }

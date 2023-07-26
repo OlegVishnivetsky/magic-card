@@ -30,12 +30,12 @@ public class PlayerCardPlacingZone : MonoBehaviour, IDropHandler
             return;
         }
 
-        if (rivalsStats.GetPlayerCurrentMana() - card.GetCardDetails().manaCost < 0)
+        if (rivalsStats.GetPlayerCurrentMana() - card.GetCardDetails().cardData.manaCost < 0)
         {
             return;
         }
 
-        rivalsStats.SpendPlayerMana(card.GetCardDetails().manaCost);
+        rivalsStats.SpendPlayerMana(card.GetCardDetails().cardData.manaCost);
 
         card.cardSelector.DisableSelection();
         card.gameObject.AddComponent<PlacedCard>();

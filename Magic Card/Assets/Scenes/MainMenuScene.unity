@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 438415087}
   - component: {fileID: 438415086}
   - component: {fileID: 438415085}
+  - component: {fileID: 438415088}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -352,19 +353,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 438415086}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 172665296}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: LoadGameScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &438415086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +392,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438415083}
   m_CullTransparentMesh: 1
+--- !u!114 &438415088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438415083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fffddabb622ce848904b08b89131abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playButton: {fileID: 438415085}
+  playerDeck: {fileID: 11400000, guid: dda7e0539dbede04c86d68a93b737228, type: 2}
+  enemyDeck: {fileID: 11400000, guid: 780a4ac768d087e47a02495a10c7f039, type: 2}
+  sceneController: {fileID: 172665296}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

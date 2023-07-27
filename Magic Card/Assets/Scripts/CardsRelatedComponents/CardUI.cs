@@ -21,15 +21,43 @@ public class CardUI : MonoBehaviour
     [SerializeField] private Image cardImage;
     [SerializeField] private Image avatarImage;
     [SerializeField] private Image avatarBackgroundImage;
+    [SerializeField] private Image divineShieldImage;
 
     private void Awake()
     {
         card = GetComponent<Card>();
     }
 
+    private void OnEnable()
+    {
+        StaticEventsHandler.OnCardPlaced += StaticEventsHandler_OnCardPlaced;
+        card.cardHealth.OnCardHealthChanged += CardHealth_OnCardHealthChanged;
+    }
+
+    private void OnDisable()
+    {
+        StaticEventsHandler.OnCardPlaced -= StaticEventsHandler_OnCardPlaced;
+        card.cardHealth.OnCardHealthChanged -= CardHealth_OnCardHealthChanged;
+    }
+
     private void Start()
     {
         UpdateCardUI();
+        HideDivineShield();
+    }
+
+    private void CardHealth_OnCardHealthChanged(int currentHealth)
+    {
+        UpdateCardText();
+        HideDivineShield();
+    }
+
+    private void StaticEventsHandler_OnCardPlaced(Card placedCard)
+    {
+        if (placedCard == card)
+        {
+            ShowDivineShield();
+        }
     }
 
     public void UpdateCardUI()
@@ -45,7 +73,7 @@ public class CardUI : MonoBehaviour
         if (damageText != null)
             damageText.text = card.GetCardDetails().damage.ToString();
         if (healthText != null)
-            healthText.text = card.GetCardHealth().ToString();
+            healthText.text = card.cardHealth.GetCurrentHealth().ToString();
         if (manaCostText != null)
             manaCostText.text = card.GetCardDetails().manaCost.ToString();
         if (cardTypeText != null)
@@ -76,6 +104,22 @@ public class CardUI : MonoBehaviour
         characterNameText.text = "";
         cardDescriptionText.text = "";
         cardTypeText.text = "";
+    }
+
+    public void ShowDivineShield()
+    {
+        if (card.divineShield != null)
+        {
+            divineShieldImage.gameObject.SetActive(true);
+        }
+    }
+
+    public void HideDivineShield()
+    {
+        if(card.divineShield != null)
+        {
+            divineShieldImage.gameObject.SetActive(false);
+        }
     }
 
     private void UpdateCharacterName()

@@ -21,7 +21,7 @@ public class PlacedCard : MonoBehaviour, IEndDragHandler
         {
             Card cardToAttack = pointerCurrentCard;
 
-            if (cardToAttack.isEnemy)
+            if (cardToAttack.IsEnemy)
             {
                 if (IsAnyTauntPlaced())
                 {
@@ -31,19 +31,19 @@ public class PlacedCard : MonoBehaviour, IEndDragHandler
                     }
                 }
 
-                card.AttackCard(cardToAttack);
+                card.cardAttack.Attack(cardToAttack);
             }
         }
     }
 
     private bool IsAllowedToEndDrag()
     {
-        if (card.isEnemy)
+        if (card.IsEnemy)
         {
             return false;
         }
 
-        if (!card.isCanAttack)
+        if (!card.cardAttack.IsCanAttack)
         {
             return false;
         }

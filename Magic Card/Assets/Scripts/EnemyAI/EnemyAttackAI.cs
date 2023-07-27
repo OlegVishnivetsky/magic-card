@@ -21,7 +21,7 @@ public class EnemyAttackAI : MonoBehaviour
 
     private void StaticEventsHandler_OnCardPlaced(Card placedCard)
     {
-        if (placedCard.isEnemy)
+        if (placedCard.IsEnemy)
         {
             enemyPlacedCards.Add(placedCard);
         }
@@ -58,7 +58,7 @@ public class EnemyAttackAI : MonoBehaviour
 
             yield return new WaitForSeconds(attackDelay);
 
-            enemyPlacedCards[i].AttackCard(playerPlacedCards[0]);
+            enemyPlacedCards[i].cardAttack.Attack(playerPlacedCards[0]);
 
             CheckForCardsExistence(i);
 

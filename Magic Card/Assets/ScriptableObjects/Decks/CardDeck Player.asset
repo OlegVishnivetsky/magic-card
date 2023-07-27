@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: CardDeck Player
   m_EditorClassIdentifier: 
   cards:
+  - {fileID: 11400000, guid: a749a402f68baac428988b5b8e9739a5, type: 2}
+  - {fileID: 11400000, guid: 5b182a879399f93498efbd49bd9db23b, type: 2}
   - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
   - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
-  - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
-  - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
-  - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
-  - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
+  - {fileID: 11400000, guid: 788cf0774b1859e45995799609785444, type: 2}
+  - {fileID: 11400000, guid: 788cf0774b1859e45995799609785444, type: 2}
+  - {fileID: 11400000, guid: 788cf0774b1859e45995799609785444, type: 2}
   isEnemyDeck: 0

@@ -47,7 +47,7 @@ public class CardSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             return false;
         }
 
-        if (card.isEnemy)
+        if (card.IsEnemy)
         {
             return false;
         }

@@ -1,58 +1,24 @@
 using UnityEngine;
 
-[System.Serializable]
+[RequireComponent(typeof(CardHealth))]
 public class Card : MonoBehaviour
 {
+    [Header("CARD DETAILS")]
     [SerializeField] private CardDetailsSO cardDetails;
 
+    [Header("MAIN COMPONENTS")]
+    public CardHealth cardHealth;
+    public CardAttack cardAttack;
     public CardSelector cardSelector;
     public CardController cardController;
 
-    [HideInInspector] public bool isEnemy;
-    [HideInInspector] public bool isCanAttack;
+    [HideInInspector] public DivineShield divineShield;
 
-    private int health;
-
-    private void OnEnable()
-    {
-        StaticEventsHandler.OnTurnChanged += GameController_OnTurnChanged;
-    }
-
-    private void OnDisable()
-    {
-        StaticEventsHandler.OnTurnChanged -= GameController_OnTurnChanged;
-    }
+    public bool IsEnemy { get; set; }
 
     private void Start()
     {
-        health = cardDetails.health;
-
-        if (cardDetails.cardType == CardType.Rush)
-        {
-            isCanAttack = true;
-        }
-        else
-        {
-            isCanAttack = false;
-        }
-    }
-
-    public int GetCardHealth()
-    {
-        return health;
-    }
-
-    public void DecreaseHealth(int damage)
-    {
-        health -= damage;
-    }
-
-    private void GameController_OnTurnChanged(Turn turn)
-    {
-        if (gameObject.GetComponent<PlacedCard>() != null)
-        {
-            isCanAttack = true;
-        }
+        SetUpCardByCardType();
     }
 
     public CardDetailsSO GetCardDetails()
@@ -65,31 +31,21 @@ public class Card : MonoBehaviour
         this.cardDetails = cardDetails;
     }
 
-    public void AttackCard(Card target)
+    private void SetUpCardByCardType()
     {
-        if (!isCanAttack)
+        switch (cardDetails.cardType)
         {
-            return;
-        }
+            case CardType.Rush:
+                cardAttack.IsCanAttack = true;
+                break;
 
-        health -= target.GetCardDetails().damage;
-        target.DecreaseHealth(cardDetails.damage);
+            case CardType.DivineShield:
+                divineShield = gameObject.AddComponent<DivineShield>();
+                divineShield.IsDivineShieldActive = true;
+                break;
 
-        GetComponent<CardUI>().UpdateCardText();
-        target.GetComponent<CardUI>().UpdateCardText();
-
-        isCanAttack = false;
-
-        if (target.GetCardHealth() <= 0)
-        {
-            StaticEventsHandler.InvokeCardDestroyedEvent(target);
-            Destroy(target.gameObject);
-        }
-
-        if (health <= 0)
-        {
-            StaticEventsHandler.InvokeCardDestroyedEvent(this);
-            Destroy(gameObject);
+            default: 
+                break;
         }
     }
 

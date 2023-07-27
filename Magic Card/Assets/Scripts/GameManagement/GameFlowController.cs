@@ -54,7 +54,7 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
 
     private void StaticEventsHandler_OnCardDestroyed(Card destroyedCard)
     {
-        if (destroyedCard.isEnemy)
+        if (destroyedCard.IsEnemy)
         {
             enemyPlacedCard.Remove(destroyedCard);
         }
@@ -66,7 +66,7 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
 
     private void StaticEventsHandler_OnCardPlaced(Card card)
     {
-        if (card.isEnemy)
+        if (card.IsEnemy)
         {
             enemyPlacedCard.Add(card);
         }

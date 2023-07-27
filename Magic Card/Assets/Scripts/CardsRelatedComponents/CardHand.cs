@@ -83,7 +83,7 @@ public class CardHand : MonoBehaviour
 
         if (deck.isEnemyDeck)
         {
-            spawnedCard.isEnemy = true;
+            spawnedCard.IsEnemy = true;
         }
     }
 
@@ -103,7 +103,7 @@ public class CardHand : MonoBehaviour
 
         if (deck.isEnemyDeck)
         {
-            spawnedCard.isEnemy = true;
+            spawnedCard.IsEnemy = true;
         }
     }
 

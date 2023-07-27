@@ -38,7 +38,7 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        isCanDragPlacedCard = GetComponent<PlacedCard>() != null && !card.isCanAttack;
+        isCanDragPlacedCard = GetComponent<PlacedCard>() != null && !card.cardAttack.IsCanAttack;
 
         if (!IsAllowedToControlCard())
         {
@@ -95,7 +95,7 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             return false;
         }
 
-        if (card.isEnemy)
+        if (card.IsEnemy)
         {
             return false;
         }

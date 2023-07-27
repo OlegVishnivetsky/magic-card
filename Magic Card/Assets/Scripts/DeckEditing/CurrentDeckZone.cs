@@ -77,7 +77,7 @@ public class CurrentDeckZone : MonoBehaviour, IDropHandler
 
     private void InstantiateCard(CardDetailsSO cardDetails)
     {
-        Card cardObject = Instantiate(cardDetails.prefab, deckContentTransform);
+        Card cardObject = Instantiate(GameResources.Instance.cardPrefab, deckContentTransform);
         cardObject.SetCardDetails(cardDetails);
         cardObject.gameObject.AddComponent<CardForEditDeckController>().GetNewGridLayoutGroupComponent();
 

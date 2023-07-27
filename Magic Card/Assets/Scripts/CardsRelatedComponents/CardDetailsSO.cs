@@ -3,8 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/CardDetails", fileName = "_CardDetails")]
 public class CardDetailsSO : ScriptableObject
 {
-    public Card prefab;
-
     [Header("MAIN PARAMETERS")]
     public int damage;
     public int health;

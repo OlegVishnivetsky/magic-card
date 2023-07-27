@@ -57,4 +57,11 @@ public static class StaticEventsHandler
     {
         OnCardPlaced?.Invoke(placedCard);
     }
+
+    public static event Action<Card> OnCardDestroyed;
+
+    public static void InvokeCardDestroyedEvent(Card destroyedCard)
+    {
+        OnCardDestroyed?.Invoke(destroyedCard);
+    }
 }

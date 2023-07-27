@@ -12,20 +12,55 @@ public class PlacedCard : MonoBehaviour, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (card.isEnemy)
+        if (!IsAllowedToEndDrag())
         {
             return;
         }
 
-        if (eventData.pointerCurrentRaycast.gameObject.GetComponent<Card>() != null)
+        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Card pointerCurrentCard))
         {
-            Card cardToAttack = eventData.pointerCurrentRaycast.gameObject.GetComponent<Card>();
+            Card cardToAttack = pointerCurrentCard;
 
             if (cardToAttack.isEnemy)
             {
+                if (IsAnyTauntPlaced())
+                {
+                    if (cardToAttack.GetCardDetails().cardType != CardType.Taunt)
+                    {
+                        return;
+                    }
+                }
+
                 card.AttackCard(cardToAttack);
-                cardToAttack = null;
             }
         }
+    }
+
+    private bool IsAllowedToEndDrag()
+    {
+        if (card.isEnemy)
+        {
+            return false;
+        }
+
+        if (!card.isCanAttack)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool IsAnyTauntPlaced()
+    {
+        foreach (Card card in GameFlowController.Instance.enemyPlacedCard)
+        {
+            if (card.GetCardDetails().cardType == CardType.Taunt)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

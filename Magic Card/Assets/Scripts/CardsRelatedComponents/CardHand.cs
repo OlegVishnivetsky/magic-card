@@ -76,7 +76,7 @@ public class CardHand : MonoBehaviour
             return;
         }
 
-        Card spawnedCard = Instantiate(cardsFromDeckList[index].prefab, transform);
+        Card spawnedCard = Instantiate(GameResources.Instance.cardPrefab, transform);
         spawnedCard.SetCardDetails(cardsFromDeckList[index]);
 
         cardsFromDeckList.RemoveAt(index);
@@ -96,7 +96,7 @@ public class CardHand : MonoBehaviour
 
         int randomNumber = Random.Range(0, cardsFromDeckList.Count);
 
-        Card spawnedCard = Instantiate(cardsFromDeckList[randomNumber].prefab, transform);
+        Card spawnedCard = Instantiate(GameResources.Instance.cardPrefab, transform);
         spawnedCard.SetCardDetails(cardsFromDeckList[randomNumber]);
 
         cardsFromDeckList.RemoveAt(randomNumber);

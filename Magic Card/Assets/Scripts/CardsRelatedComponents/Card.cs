@@ -82,11 +82,13 @@ public class Card : MonoBehaviour
 
         if (target.GetCardHealth() <= 0)
         {
+            StaticEventsHandler.InvokeCardDestroyedEvent(target);
             Destroy(target.gameObject);
         }
 
         if (health <= 0)
         {
+            StaticEventsHandler.InvokeCardDestroyedEvent(this);
             Destroy(gameObject);
         }
     }

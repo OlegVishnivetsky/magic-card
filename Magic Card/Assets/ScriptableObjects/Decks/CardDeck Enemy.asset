@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 32
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42a17773e6f9f94e94e1704d54642b7, type: 3}
   m_Name: CardDeck Enemy
   m_EditorClassIdentifier: 
-  cards: []
+  cards:
+  - {fileID: 11400000, guid: 2da948408f5066c448a88d3c166b82ad, type: 2}
+  - {fileID: 11400000, guid: 2da948408f5066c448a88d3c166b82ad, type: 2}
+  - {fileID: 11400000, guid: 788cf0774b1859e45995799609785444, type: 2}
+  - {fileID: 11400000, guid: 788cf0774b1859e45995799609785444, type: 2}
+  - {fileID: 11400000, guid: 788cf0774b1859e45995799609785444, type: 2}
   isEnemyDeck: 1

@@ -14,6 +14,18 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
 
     private Turn currentTurn = Turn.PlayerTurn;
 
+    private void OnEnable()
+    {
+        StaticEventsHandler.OnCardPlaced += StaticEventsHandler_OnCardPlaced;
+        StaticEventsHandler.OnCardDestroyed += StaticEventsHandler_OnCardDestroyed;
+    }
+
+    private void OnDisable()
+    {
+        StaticEventsHandler.OnCardPlaced -= StaticEventsHandler_OnCardPlaced;
+        StaticEventsHandler.OnCardDestroyed -= StaticEventsHandler_OnCardDestroyed;
+    }
+
     private void Start()
     {
         currentTurn = Turn.PlayerTurn;
@@ -38,5 +50,29 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
         }
 
         StaticEventsHandler.InvokeTurnChangedEvent(currentTurn);
+    }
+
+    private void StaticEventsHandler_OnCardDestroyed(Card destroyedCard)
+    {
+        if (destroyedCard.isEnemy)
+        {
+            enemyPlacedCard.Remove(destroyedCard);
+        }
+        else
+        {
+            playerPlacedCard.Remove(destroyedCard);
+        }
+    }
+
+    private void StaticEventsHandler_OnCardPlaced(Card card)
+    {
+        if (card.isEnemy)
+        {
+            enemyPlacedCard.Add(card);
+        }
+        else
+        {
+            playerPlacedCard.Add(card);
+        }
     }
 }

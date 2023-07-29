@@ -9,8 +9,8 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
     [SerializeField] private Card playerMainCard;
     [SerializeField] private Card enemyMainCard;
 
-    public List<Card> playerPlacedCard;
-    public List<Card> enemyPlacedCard;
+    public List<Card> playerPlacedCards;
+    public List<Card> enemyPlacedCards;
 
     private Turn currentTurn = Turn.PlayerTurn;
 
@@ -56,11 +56,11 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
     {
         if (destroyedCard.IsEnemy)
         {
-            enemyPlacedCard.Remove(destroyedCard);
+            enemyPlacedCards.Remove(destroyedCard);
         }
         else
         {
-            playerPlacedCard.Remove(destroyedCard);
+            playerPlacedCards.Remove(destroyedCard);
         }
     }
 
@@ -68,11 +68,11 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
     {
         if (card.IsEnemy)
         {
-            enemyPlacedCard.Add(card);
+            enemyPlacedCards.Add(card);
         }
         else
         {
-            playerPlacedCard.Add(card);
+            playerPlacedCards.Add(card);
         }
     }
 }

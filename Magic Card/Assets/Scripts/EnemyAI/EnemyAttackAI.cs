@@ -1,35 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttackAI : MonoBehaviour
 {
     [SerializeField] private float attackDelay;
-
-    private List<Card> enemyPlacedCards = new List<Card>();
-    private List<Card> playerPlacedCards = new List<Card>();
-
-    private void OnEnable()
-    {
-        StaticEventsHandler.OnCardPlaced += StaticEventsHandler_OnCardPlaced;
-    }
-
-    private void OnDisable()
-    {
-        StaticEventsHandler.OnCardPlaced -= StaticEventsHandler_OnCardPlaced;
-    }
-
-    private void StaticEventsHandler_OnCardPlaced(Card placedCard)
-    {
-        if (placedCard.IsEnemy)
-        {
-            enemyPlacedCards.Add(placedCard);
-        }
-        else
-        {
-            playerPlacedCards.Add(placedCard);
-        }
-    }
 
     public void Attack()
     {
@@ -38,29 +12,43 @@ public class EnemyAttackAI : MonoBehaviour
 
     private IEnumerator AttackRoutine()
     {
-        if (playerPlacedCards.Count == 0)
+        if (GameFlowController.Instance.playerPlacedCards.Count == 0)
         {
             GameFlowController.Instance.ChangeTurn();
             yield break;
         }
 
-        for (int i = 0; i < enemyPlacedCards.Count; i++)
+        Card playerCardToAttack = GameFlowController.Instance.playerPlacedCards[0];
+
+        if (IsAnyTauntPlaced() != null)
         {
-            if (enemyPlacedCards[i] == null)
+            playerCardToAttack = IsAnyTauntPlaced();
+            Debug.Log(playerCardToAttack);
+        }
+
+        for (int i = 0; i < GameFlowController.Instance.enemyPlacedCards.Count; i++)
+        {
+            if (playerCardToAttack == null)
             {
-                continue;
+                if (GameFlowController.Instance.playerPlacedCards.Count > 0)
+                {
+                    playerCardToAttack = GameFlowController.Instance.playerPlacedCards[0];
+                }
+                else
+                {
+                    continue;
+                }
             }
 
-            if (playerPlacedCards[0] == null)
+            if (GameFlowController.Instance.enemyPlacedCards[i] == null)
             {
                 continue;
             }
 
             yield return new WaitForSeconds(attackDelay);
 
-            enemyPlacedCards[i].cardAttack.Attack(playerPlacedCards[0]);
-
-            CheckForCardsExistence(i);
+            GameFlowController.Instance.enemyPlacedCards[i]
+                .cardAttack.Attack(playerCardToAttack);
 
             yield return null;
         }
@@ -68,16 +56,16 @@ public class EnemyAttackAI : MonoBehaviour
         GameFlowController.Instance.ChangeTurn();
     }
 
-    private void CheckForCardsExistence(int index)
+    private Card IsAnyTauntPlaced()
     {
-        if (enemyPlacedCards[index] == null)
+        foreach (Card tauntCard in GameFlowController.Instance.playerPlacedCards)
         {
-            enemyPlacedCards.RemoveAt(index);
+            if (tauntCard.GetCardDetails().cardType == CardType.Taunt)
+            {
+                return tauntCard;
+            }
         }
 
-        if (playerPlacedCards[0] == null)
-        {
-            playerPlacedCards.RemoveAt(0);
-        }
+        return null;
     }
 }

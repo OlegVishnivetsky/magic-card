@@ -53,7 +53,7 @@ public class PlacedCard : MonoBehaviour, IEndDragHandler
 
     private bool IsAnyTauntPlaced()
     {
-        foreach (Card card in GameFlowController.Instance.enemyPlacedCard)
+        foreach (Card card in GameFlowController.Instance.enemyPlacedCards)
         {
             if (card.GetCardDetails().cardType == CardType.Taunt)
             {

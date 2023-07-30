@@ -4523,6 +4523,14 @@ PrefabInstance:
       value: GameFlowController
       objectReference: {fileID: 0}
     - target: {fileID: 7469161523001132013, guid: 85189ab1a6022514387edd1919c6e6c9, type: 3}
+      propertyPath: enemyHand
+      value: 
+      objectReference: {fileID: 949195955}
+    - target: {fileID: 7469161523001132013, guid: 85189ab1a6022514387edd1919c6e6c9, type: 3}
+      propertyPath: playerHand
+      value: 
+      objectReference: {fileID: 1504471382}
+    - target: {fileID: 7469161523001132013, guid: 85189ab1a6022514387edd1919c6e6c9, type: 3}
       propertyPath: endTurnButton
       value: 
       objectReference: {fileID: 1007918238}

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CardDeck Player
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: 2da948408f5066c448a88d3c166b82ad, type: 2}
-  - {fileID: 11400000, guid: 2da948408f5066c448a88d3c166b82ad, type: 2}
-  - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
+  - {fileID: 11400000, guid: de1a8341136d47748a9440604e878371, type: 2}
+  - {fileID: 11400000, guid: de1a8341136d47748a9440604e878371, type: 2}
+  - {fileID: 11400000, guid: de1a8341136d47748a9440604e878371, type: 2}
   - {fileID: 11400000, guid: cbe753cff5efe194dacbb60fbabd9616, type: 2}
   - {fileID: 11400000, guid: 788cf0774b1859e45995799609785444, type: 2}
   - {fileID: 11400000, guid: 788cf0774b1859e45995799609785444, type: 2}

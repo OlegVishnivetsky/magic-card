@@ -45,6 +45,10 @@ public class Card : MonoBehaviour
                 divineShield = gameObject.AddComponent<DivineShield>();
                 break;
 
+            case CardAbility.Battlecry:
+                gameObject.AddComponent<Battlecry>();           
+                break;
+
             default: 
                 break;
         }

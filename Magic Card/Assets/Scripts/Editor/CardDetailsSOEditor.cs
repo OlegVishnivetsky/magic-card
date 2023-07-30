@@ -42,10 +42,10 @@ public class CardDetailsSOEditor : Editor
         cardDetails.cardDescription = EditorGUILayout.TextField("Card Description", cardDetails.cardDescription);
 
         EditorGUILayout.Space(10);
-        EditorGUILayout.ObjectField("Character Avatar", cardDetails.characterAvatarSprite,
-            typeof(Sprite), false);
-        EditorGUILayout.ObjectField("Avatar Background", cardDetails.avatarBackgroundSprite,
-            typeof(Sprite), false);
+        cardDetails.characterAvatarSprite = (Sprite)EditorGUILayout.ObjectField("Character Avatar", 
+            cardDetails.characterAvatarSprite,typeof(Sprite), false);
+        cardDetails.avatarBackgroundSprite = (Sprite)EditorGUILayout.ObjectField("Avatar Background", 
+            cardDetails.avatarBackgroundSprite,typeof(Sprite), false);
 
         if (GUI.changed)
         {

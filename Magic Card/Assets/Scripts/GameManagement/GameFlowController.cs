@@ -6,8 +6,8 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
 {
     [SerializeField] private Button endTurnButton;
 
-    [SerializeField] private Card playerMainCard;
-    [SerializeField] private Card enemyMainCard;
+    [SerializeField] private CardHand playerHand;
+    [SerializeField] private CardHand enemyHand;
 
     public List<Card> playerPlacedCards;
     public List<Card> enemyPlacedCards;
@@ -29,6 +29,16 @@ public class GameFlowController : SingletonMonobehaviour<GameFlowController>
     private void Start()
     {
         currentTurn = Turn.PlayerTurn;
+    }
+
+    public CardHand GetPlayerHand()
+    {
+        return playerHand;
+    }
+
+    public CardHand GetEnemyHand() 
+    { 
+        return enemyHand; 
     }
 
     public Turn GetCurrentTurn()

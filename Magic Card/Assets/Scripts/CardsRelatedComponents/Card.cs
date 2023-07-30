@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[DisallowMultipleComponent]
+[RequireComponent(typeof(CardUI))]
 [RequireComponent(typeof(CardHealth))]
 public class Card : MonoBehaviour
 {
@@ -33,15 +35,14 @@ public class Card : MonoBehaviour
 
     private void SetUpCardByCardType()
     {
-        switch (cardDetails.cardType)
+        switch (cardDetails.cardAbility)
         {
-            case CardType.Rush:
+            case CardAbility.Rush:
                 cardAttack.IsCanAttack = true;
                 break;
 
-            case CardType.DivineShield:
+            case CardAbility.DivineShield:
                 divineShield = gameObject.AddComponent<DivineShield>();
-                divineShield.IsDivineShieldActive = true;
                 break;
 
             default: 

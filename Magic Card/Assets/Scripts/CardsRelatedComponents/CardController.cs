@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[DisallowMultipleComponent]
 [RequireComponent(typeof(Card))]
 [RequireComponent(typeof(CanvasGroup))]
 public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     private Card card;
-    private CardHand cardHand;
     private Camera cameraCache;
     private CanvasGroup canvasGroup;
 
@@ -20,20 +20,6 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
         card = GetComponent<Card>();
         canvasGroup = GetComponent<CanvasGroup>();
-        cardHand = GetComponentInParent<CardHand>();
-    }
-
-    private void Start()
-    {
-        if (cardHand == null)
-        {
-            return;
-        }
-
-        if (cardHand.GetCardDeck().isEnemyDeck)
-        {
-            GetComponent<CardUI>().HideCardUI();
-        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)

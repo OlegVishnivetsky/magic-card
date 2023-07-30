@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d84bba7bb0312418b583b348e5be30, type: 3}
   m_Name: Roegadyn_CardDetails
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1741651138271158169, guid: 3143e6dd5d651d54d89f042f667751db, type: 3}
-  damage: 3
-  health: 4
-  manaCost: 5
+  damage: 2
+  health: 3
+  manaCost: 4
   cardTier: 3
-  cardType: 3
+  cardAbility: 0
+  battlecryCardAbility: 0
   characterName: Roegadyn
   cardDescription: 
   characterAvatarSprite: {fileID: 21300000, guid: 48459b6fa17b5a942a52883c0d10433b, type: 3}

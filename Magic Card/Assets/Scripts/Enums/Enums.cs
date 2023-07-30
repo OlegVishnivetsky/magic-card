@@ -4,12 +4,19 @@ public enum Turn
     EnemyTurn
 }
 
-public enum CardType
+public enum CardAbility
 {
     Default,
     Taunt,
     Rush,
-    DivineShield
+    DivineShield,
+    Deathrattle,
+    Battlecry
+}
+
+public enum BattlecryCardAbility
+{
+    DrawCard
 }
 
 public enum CardTier

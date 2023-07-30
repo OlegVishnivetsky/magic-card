@@ -11,10 +11,14 @@ public class CardUI : MonoBehaviour
     [Header("TEXT COMPONENTS")]
     [SerializeField] private TextMeshProUGUI damageText;
     [SerializeField] private TextMeshProUGUI healthText;
-    [SerializeField] private TextMeshProUGUI cardTierText;
     [SerializeField] private TextMeshProUGUI manaCostText;
-    [SerializeField] private TextMeshProUGUI characterNameText;
+
+    [Space(5)]
+    [SerializeField] private TextMeshProUGUI cardTierText;
     [SerializeField] private TextMeshProUGUI cardTypeText;
+
+    [Space(5)]
+    [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI cardDescriptionText;
 
     [Header("IMAGE COMPONENTS")]
@@ -42,33 +46,64 @@ public class CardUI : MonoBehaviour
 
     private void Start()
     {
-        UpdateCardUI();
-        HideDivineShield();
+        if (card.IsEnemy)
+        {
+            HideCardUI();
+        }
+        else
+        {
+            UpdateCardUI();
+        }
+
+        HideDivineShieldImage();
     }
 
     private void CardHealth_OnCardHealthChanged(int currentHealth)
     {
-        UpdateCardText();
-        HideDivineShield();
+        UpdateCardStatsTexts();
+        HideDivineShieldImage();
     }
 
     private void StaticEventsHandler_OnCardPlaced(Card placedCard)
     {
         if (placedCard == card)
         {
-            ShowDivineShield();
+            ShowDivineShieldImage();
+        }
+
+        if (placedCard == card && card.IsEnemy)
+        {
+            UpdateCardUI();
         }
     }
 
     public void UpdateCardUI()
     {
-        UpdateCardText();
-        UpdateCharacterName();
+        HideCardUI();
+        UpdateCardOtherTexts();
+        UpdateCardNameAndDescriptionTexts();
+        UpdateCardStatsTexts();
         UpdateCardImages();
-        SetCardColorByTier();
+        SetCardColorByTier();     
     }
 
-    public void UpdateCardText()
+    public void UpdateCardOtherTexts()
+    {
+        if (cardTypeText != null)
+            cardTypeText.text = Enum.GetName(typeof(CardAbility), card.GetCardDetails().cardAbility);
+        if (cardTierText != null)
+            cardTierText.text = Enum.GetName(typeof(CardTier), card.GetCardDetails().cardTier);
+    }
+
+    public void UpdateCardNameAndDescriptionTexts()
+    {
+        if (characterNameText != null)
+            characterNameText.text = card.GetCardDetails().characterName;
+        if (cardDescriptionText != null)
+            cardDescriptionText.text = card.GetCardDetails().cardDescription;
+    }
+
+    public void UpdateCardStatsTexts()
     {
         if (damageText != null)
             damageText.text = card.GetCardDetails().damage.ToString();
@@ -76,12 +111,6 @@ public class CardUI : MonoBehaviour
             healthText.text = card.cardHealth.GetCurrentHealth().ToString();
         if (manaCostText != null)
             manaCostText.text = card.GetCardDetails().manaCost.ToString();
-        if (cardTypeText != null)
-            cardTypeText.text = Enum.GetName(typeof(CardType), card.GetCardDetails().cardType);
-        if (cardTierText != null)
-            cardTierText.text = Enum.GetName(typeof(CardTier), card.GetCardDetails().cardTier);
-        if (cardDescriptionText != null)
-            cardDescriptionText.text = card.GetCardDetails().cardDescription;
     }
 
     public void UpdateCardImages()
@@ -106,7 +135,7 @@ public class CardUI : MonoBehaviour
         cardTypeText.text = "";
     }
 
-    public void ShowDivineShield()
+    public void ShowDivineShieldImage()
     {
         if (card.divineShield != null)
         {
@@ -114,18 +143,12 @@ public class CardUI : MonoBehaviour
         }
     }
 
-    public void HideDivineShield()
+    public void HideDivineShieldImage()
     {
         if(card.divineShield != null)
         {
             divineShieldImage.gameObject.SetActive(false);
         }
-    }
-
-    private void UpdateCharacterName()
-    {
-        if (characterNameText != null)
-            characterNameText.text = card.GetCardDetails().characterName;
     }
 
     private void SetCardColorByTier()

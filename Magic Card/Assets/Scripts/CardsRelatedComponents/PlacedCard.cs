@@ -25,7 +25,7 @@ public class PlacedCard : MonoBehaviour, IEndDragHandler
             {
                 if (IsAnyTauntPlaced())
                 {
-                    if (cardToAttack.GetCardDetails().cardType != CardType.Taunt)
+                    if (cardToAttack.GetCardDetails().cardAbility != CardAbility.Taunt)
                     {
                         return;
                     }
@@ -55,7 +55,7 @@ public class PlacedCard : MonoBehaviour, IEndDragHandler
     {
         foreach (Card card in GameFlowController.Instance.enemyPlacedCards)
         {
-            if (card.GetCardDetails().cardType == CardType.Taunt)
+            if (card.GetCardDetails().cardAbility == CardAbility.Taunt)
             {
                 return true;
             }

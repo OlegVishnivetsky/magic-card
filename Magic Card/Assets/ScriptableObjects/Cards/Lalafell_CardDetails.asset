@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d84bba7bb0312418b583b348e5be30, type: 3}
   m_Name: Lalafell_CardDetails
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1741651138271158169, guid: 3143e6dd5d651d54d89f042f667751db, type: 3}
   damage: 2
   health: 7
-  manaCost: 4
+  manaCost: 5
   cardTier: 1
-  cardType: 1
+  cardAbility: 0
+  battlecryCardAbility: 0
   characterName: Lalafell
   cardDescription: 
   characterAvatarSprite: {fileID: 21300000, guid: 1b4399aae531f31498b16f8bbc9211ef, type: 3}

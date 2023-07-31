@@ -23,15 +23,15 @@ public class Battlecry : MonoBehaviour
 
     private void StaticEventsHandler_OnCardPlaced(Card placedCard)
     {
-        HandleBattlecryAbilities();
-        HandleBattlecryAbilities();
-        HandleBattlecryAbilities();
-        HandleBattlecryAbilities();
+        if (placedCard == card)
+        {
+            HandleBattlecryAbilities();
+        }
     }
 
     private void HandleBattlecryAbilities()
     {
-        switch (card.GetCardDetails().battlecryCardAbility)
+        switch (card.GetCardDetails().battlecryDetailsSO.battlecryCardAbility)
         {
             case BattlecryCardAbility.DrawCard:
                 HandleBattlecryDrawCardAbility();
@@ -46,11 +46,13 @@ public class Battlecry : MonoBehaviour
     {
         if (card.IsEnemy)
         {
-            GameFlowController.Instance.GetEnemyHand().TakeRandomCardFromDeck();
+            GameFlowController.Instance.GetEnemyHand()
+                .TakeCertainAmountOfRandomCardFromDeck(card.GetCardDetails().battlecryDetailsSO.amountOfCardsToDraw);
         }
         else
         {
-            GameFlowController.Instance.GetPlayerHand().TakeRandomCardFromDeck();
+            GameFlowController.Instance.GetPlayerHand()
+                .TakeCertainAmountOfRandomCardFromDeck(card.GetCardDetails().battlecryDetailsSO.amountOfCardsToDraw);
         }
     }
 }

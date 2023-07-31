@@ -5,15 +5,11 @@ using UnityEngine;
 [CustomEditor(typeof(CardDetailsSO))]
 public class CardDetailsSOEditor : Editor
 {
-    private GUIStyle headerStyle;
+    private CustomEditorPresets customEditorPresets;
 
     private void OnEnable()
     {
-        headerStyle = new GUIStyle();
-        headerStyle.fontStyle = FontStyle.Bold;
-        headerStyle.alignment = TextAnchor.MiddleLeft;
-        headerStyle.normal.textColor = Color.gray;
-        headerStyle.fontSize = 15;
+        customEditorPresets = new CustomEditorPresets();
     }
 
     public override void OnInspectorGUI()
@@ -22,7 +18,7 @@ public class CardDetailsSOEditor : Editor
 
         CardDetailsSO cardDetails = (CardDetailsSO)target;
 
-        EditorGUILayout.LabelField("MAIN PARAMETERS", headerStyle);
+        customEditorPresets.DrawHeader("MAIN PARAMETERS");
         cardDetails.damage = EditorGUILayout.IntField("Damage", cardDetails.damage);
         cardDetails.health = EditorGUILayout.IntField("Health", cardDetails.health);
         cardDetails.manaCost = EditorGUILayout.IntField("Mana Cost", cardDetails.manaCost);
@@ -33,19 +29,21 @@ public class CardDetailsSOEditor : Editor
 
         if (cardDetails.cardAbility == CardAbility.Battlecry)
         {
-            cardDetails.battlecryCardAbility = (BattlecryCardAbility)EditorGUILayout
-                .EnumPopup("Battlecry Card Ability", cardDetails.battlecryCardAbility);
+            EditorGUILayout.Space(5);
+            customEditorPresets.DrawHeader("BATTLECRY PARAMETERS");
+            cardDetails.battlecryDetailsSO = (BattlecryDetailsSO)EditorGUILayout.ObjectField("Battlecry Details",
+                cardDetails.battlecryDetailsSO, typeof(ScriptableObject), false);
         }
 
-            EditorGUILayout.Space(10);
+        EditorGUILayout.Space(10);
         cardDetails.characterName = EditorGUILayout.TextField("Character Name", cardDetails.characterName);
         cardDetails.cardDescription = EditorGUILayout.TextField("Card Description", cardDetails.cardDescription);
 
         EditorGUILayout.Space(10);
-        cardDetails.characterAvatarSprite = (Sprite)EditorGUILayout.ObjectField("Character Avatar", 
-            cardDetails.characterAvatarSprite,typeof(Sprite), false);
-        cardDetails.avatarBackgroundSprite = (Sprite)EditorGUILayout.ObjectField("Avatar Background", 
-            cardDetails.avatarBackgroundSprite,typeof(Sprite), false);
+        cardDetails.characterAvatarSprite = (Sprite)EditorGUILayout.ObjectField("Character Avatar",
+            cardDetails.characterAvatarSprite, typeof(Sprite), false);
+        cardDetails.avatarBackgroundSprite = (Sprite)EditorGUILayout.ObjectField("Avatar Background",
+            cardDetails.avatarBackgroundSprite, typeof(Sprite), false);
 
         if (GUI.changed)
         {

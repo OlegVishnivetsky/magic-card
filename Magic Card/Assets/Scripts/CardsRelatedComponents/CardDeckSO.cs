@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/CardDeck", fileName = "_CardDeck")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Cards/Card Deck", fileName = "_CardDeck")]
 public class CardDeckSO : ScriptableObject
 {
     [Header("DECK")]

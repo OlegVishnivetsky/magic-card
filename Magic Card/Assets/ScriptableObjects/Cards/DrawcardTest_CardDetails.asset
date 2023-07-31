@@ -17,7 +17,7 @@ MonoBehaviour:
   manaCost: 4
   cardTier: 2
   cardAbility: 5
-  battlecryCardAbility: 0
+  battlecryDetailsSO: {fileID: 11400000, guid: 62ef153f2bee2514e9c18dbace5b54d1, type: 2}
   characterName: Draw Card
   cardDescription: 
   characterAvatarSprite: {fileID: 21300000, guid: f2d327b1c5d2ea344a137231cc8573c4, type: 3}

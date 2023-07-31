@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/CardDetails", fileName = "_CardDetails")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Cards/Card Details", fileName = "_CardDetails")]
 public class CardDetailsSO : ScriptableObject
 {
     public int damage;
@@ -9,7 +9,7 @@ public class CardDetailsSO : ScriptableObject
 
     public CardTier cardTier;
     public CardAbility cardAbility;
-    public BattlecryCardAbility battlecryCardAbility;
+    public BattlecryDetailsSO battlecryDetailsSO;
 
     public string characterName;
     public string cardDescription;

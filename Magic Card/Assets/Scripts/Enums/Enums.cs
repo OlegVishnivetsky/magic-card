@@ -16,7 +16,8 @@ public enum CardAbility
 
 public enum BattlecryCardAbility
 {
-    DrawCard
+    DrawCard,
+    SpawnCard
 }
 
 public enum CardTier

@@ -37,6 +37,10 @@ public class Battlecry : MonoBehaviour
                 HandleBattlecryDrawCardAbility();
                 break;
 
+            case BattlecryCardAbility.SpawnCard:
+                HandleBattlecrySpawnCardAbility();
+                break;
+
             default:
                 break;
         }
@@ -54,5 +58,11 @@ public class Battlecry : MonoBehaviour
             GameFlowController.Instance.GetPlayerHand()
                 .TakeCertainAmountOfRandomCardFromDeck(card.GetCardDetails().battlecryDetailsSO.amountOfCardsToDraw);
         }
+    }
+
+    private void HandleBattlecrySpawnCardAbility()
+    {
+        CardSpawner.Instance
+            .CreateAndPlaceCard(card.GetCardDetails().battlecryDetailsSO.cardToSpawnDetails, card.IsEnemy);
     }
 }

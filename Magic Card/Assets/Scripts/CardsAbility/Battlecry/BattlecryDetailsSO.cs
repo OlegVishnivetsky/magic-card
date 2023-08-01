@@ -6,4 +6,6 @@ public class BattlecryDetailsSO : ScriptableObject
     public BattlecryCardAbility battlecryCardAbility;
 
     public int amountOfCardsToDraw;
+
+    public CardDetailsSO cardToSpawnDetails;
 }

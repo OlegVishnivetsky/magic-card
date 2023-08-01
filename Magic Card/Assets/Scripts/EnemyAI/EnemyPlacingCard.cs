@@ -11,7 +11,6 @@ public class EnemyPlacingCard : MonoBehaviour
 
     [Header("TRANFORM COMPONENTS")]
     [SerializeField] private Transform enemyHandTransform;
-    [SerializeField] private Transform enemyPlacedZoneTransform;
 
     [Header("PLACING FLOAT PARAMETERS")]
     [SerializeField] private float placingCardDelay = 1f;
@@ -66,11 +65,8 @@ public class EnemyPlacingCard : MonoBehaviour
                 rivalsStats.SpendEnemyMana(cards[i].GetCardDetails().manaCost);
 
                 Card cardToPlace = cards[i];
-                cardToPlace.transform.SetParent(enemyPlacedZoneTransform);
-                cardToPlace.gameObject.AddComponent<PlacedCard>();
-                cardToPlace.GetComponent<CardUI>().UpdateCardUI();
 
-                StaticEventsHandler.InvokeCardPlacedEvent(cardToPlace);
+                CardSpawner.Instance.PlaceEnemyCard(cardToPlace);
 
                 cards.Remove(cardToPlace);
             }
@@ -83,6 +79,7 @@ public class EnemyPlacingCard : MonoBehaviour
 
     private void CheckForNumberOfPlacedCards()
     {
-        numberOfPlacedCards = enemyPlacedZoneTransform.GetComponentsInChildren<PlacedCard>().ToList().Count;
+        numberOfPlacedCards = CardSpawner.Instance.GetEnemyPlacedZoneTransform()
+            .GetComponentsInChildren<PlacedCard>().ToList().Count;
     }
 }

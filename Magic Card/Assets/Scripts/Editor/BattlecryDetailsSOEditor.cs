@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(BattlecryDetailsSO))]
@@ -18,12 +19,24 @@ public class BattlecryDetailsSOEditor : Editor
         battlecryDetails.battlecryCardAbility = (BattlecryCardAbility)EditorGUILayout
             .EnumPopup("Battlecry Ability", battlecryDetails.battlecryCardAbility);
 
-        if (battlecryDetails.battlecryCardAbility == BattlecryCardAbility.DrawCard)
+        switch (battlecryDetails.battlecryCardAbility)
         {
-            EditorGUILayout.Space(5);
-            customEditorPresets.DrawHeader("DRAW CARD PARAMETERS");
-            battlecryDetails.amountOfCardsToDraw = EditorGUILayout
-                .IntField("Amount Of Cards To Draw", battlecryDetails.amountOfCardsToDraw);
+            case BattlecryCardAbility.DrawCard:
+                EditorGUILayout.Space(5);
+                customEditorPresets.DrawHeader("DRAW CARD PARAMETERS");
+                battlecryDetails.amountOfCardsToDraw = EditorGUILayout
+                    .IntField("Amount Of Cards To Draw", battlecryDetails.amountOfCardsToDraw);
+                break;
+
+            case BattlecryCardAbility.SpawnCard:
+                EditorGUILayout.Space(5);
+                customEditorPresets.DrawHeader("SPAWN CARD PARAMETERS");
+                battlecryDetails.cardToSpawnDetails = (CardDetailsSO)EditorGUILayout.ObjectField("Card To Spawn Details", 
+                    battlecryDetails.cardToSpawnDetails, typeof(ScriptableObject), false);
+                break;
+
+            default: 
+                break;
         }
     }
 }

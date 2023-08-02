@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d84bba7bb0312418b583b348e5be30, type: 3}
   m_Name: Aizek_CardDetails
   m_EditorClassIdentifier: 
+  id: b077e5945a7a92d498ca55bc3834d55d
   damage: 3
   health: 7
   manaCost: 6
   cardTier: 4
   cardAbility: 0
-  battlecryCardAbility: 0
+  battlecryDetailsSO: {fileID: 0}
   characterName: Aizek
   cardDescription: 
   characterAvatarSprite: {fileID: 21300000, guid: 9e1b53cdb5338674586e6e55f3a3080b, type: 3}

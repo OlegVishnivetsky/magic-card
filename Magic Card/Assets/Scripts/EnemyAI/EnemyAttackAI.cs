@@ -23,7 +23,6 @@ public class EnemyAttackAI : MonoBehaviour
         if (IsAnyTauntPlaced() != null)
         {
             playerCardToAttack = IsAnyTauntPlaced();
-            Debug.Log(playerCardToAttack);
         }
 
         for (int i = 0; i < GameFlowController.Instance.enemyPlacedCards.Count; i++)

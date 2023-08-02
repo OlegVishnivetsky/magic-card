@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Cards/Card Details", fileName = "_CardDetails")]
-public class CardDetailsSO : ScriptableObject
+public class CardDetailsSO : BaseScriptableObject
 {
     public int damage;
     public int health;

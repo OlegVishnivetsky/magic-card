@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d84bba7bb0312418b583b348e5be30, type: 3}
   m_Name: DarkElf_CardDetails
   m_EditorClassIdentifier: 
+  id: 81f0dd2af79aabd409fdff0b949de750
   damage: 3
   health: 4
   manaCost: 4
   cardTier: 0
   cardAbility: 0
-  battlecryCardAbility: 0
+  battlecryDetailsSO: {fileID: 0}
   characterName: Dark Elf
   cardDescription: 
   characterAvatarSprite: {fileID: 21300000, guid: 033ec9d468a956b48b130c074be1071d, type: 3}

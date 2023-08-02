@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d84bba7bb0312418b583b348e5be30, type: 3}
   m_Name: DrawcardTest_CardDetails
   m_EditorClassIdentifier: 
+  id: 36958bde5c84b1d42973c61fc6808022
   damage: 4
   health: 4
   manaCost: 4

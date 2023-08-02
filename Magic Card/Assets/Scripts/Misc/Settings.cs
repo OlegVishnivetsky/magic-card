@@ -24,7 +24,8 @@ public static class Settings
     public const string gameSceneSctring = "GameScene";
     public const string editDeckScene = "EditDeckScene";
 
-    public const string savePath = "/saves/";
+    public const string playerDeckSavingKey = "playerDeck";
+    public const string enemyDeckSavingKey = "enemyDeck";
 
     public const string baseCardDetailsPath = "ScriptableObjects/Cards/Base_CardDetails";
 }

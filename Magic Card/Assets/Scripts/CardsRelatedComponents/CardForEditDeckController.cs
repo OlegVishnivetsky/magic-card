@@ -7,8 +7,8 @@ public class CardForEditDeckController : MonoBehaviour, IDragHandler, IBeginDrag
     [SerializeField] private Canvas canvas;
     [SerializeField] private GridLayoutGroup gridLayoutGroup;
 
-    private CanvasGroup canvasGroup;
     private Camera cameraCache;
+    private CanvasGroup canvasGroup;
     private Vector3 draggedCardStartPosition;
 
     private EditDeckCardsZone editDeckCardsZone;

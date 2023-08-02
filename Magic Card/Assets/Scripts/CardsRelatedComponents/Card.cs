@@ -46,10 +46,10 @@ public class Card : MonoBehaviour
                 break;
 
             case CardAbility.Battlecry:
-                gameObject.AddComponent<Battlecry>();           
+                gameObject.AddComponent<Battlecry>();
                 break;
 
-            default: 
+            default:
                 break;
         }
     }

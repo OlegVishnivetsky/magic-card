@@ -17,8 +17,8 @@ MonoBehaviour:
   manaCost: 4
   cardTier: 3
   cardAbility: 3
-  battlecryDetailsSO: {fileID: 0}
+  cardActionDetails: {fileID: 0}
   characterName: Roegadyn
-  cardDescription: 
+  cardDescription: Blocks any attack once
   characterAvatarSprite: {fileID: 21300000, guid: 48459b6fa17b5a942a52883c0d10433b, type: 3}
   avatarBackgroundSprite: {fileID: 21300000, guid: 50024eb663e53464888d3c8b101de681, type: 3}

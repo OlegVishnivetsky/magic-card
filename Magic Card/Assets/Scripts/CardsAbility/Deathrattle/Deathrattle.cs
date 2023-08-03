@@ -1,27 +1,27 @@
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class Battlecry : BaseCardActions
+public class Deathrattle : BaseCardActions
 {
     private void OnEnable()
     {
-        StaticEventsHandler.OnCardPlaced += StaticEventsHandler_OnCardPlaced;
+        StaticEventsHandler.OnCardDestroyed += StaticEventsHandler_OnCardDestroyed;
     }
 
     private void OnDisable()
     {
-        StaticEventsHandler.OnCardPlaced += StaticEventsHandler_OnCardPlaced;
+        StaticEventsHandler.OnCardDestroyed -= StaticEventsHandler_OnCardDestroyed;
     }
 
-    private void StaticEventsHandler_OnCardPlaced(Card placedCard)
+    private void StaticEventsHandler_OnCardDestroyed(Card destroyedCard)
     {
-        if (placedCard == card)
+        if (destroyedCard == card)
         {
-            HandleBattlecryAbilities();
+            HandleDeathrattleAbilities();
         }
     }
 
-    private void HandleBattlecryAbilities()
+    private void HandleDeathrattleAbilities()
     {
         switch (card.GetCardDetails().cardActionDetails.cardActionType)
         {

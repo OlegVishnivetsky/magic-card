@@ -8,8 +8,8 @@ public class CardDetailsSO : BaseScriptableObject
     public int manaCost;
 
     public CardTier cardTier;
-    public CardAbility cardAbility;
-    public BattlecryDetailsSO battlecryDetailsSO;
+    public CardAbilityType cardAbility;
+    public CardActionsDetailsSO cardActionDetails;
 
     public string characterName;
     public string cardDescription;

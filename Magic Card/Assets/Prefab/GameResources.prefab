@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1741651138271158169, guid: 3143e6dd5d651d54d89f042f667751db, type: 3}
+  cardPlacedPositionObject: {fileID: 4370203660918608834, guid: 6f039381964b60c4d96090332bc23eed, type: 3}

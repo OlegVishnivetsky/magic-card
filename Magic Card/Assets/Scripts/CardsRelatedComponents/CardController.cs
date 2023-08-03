@@ -41,6 +41,8 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         {
             draggedCardStartPosition = new Vector2(transform.localPosition.x, Settings.cardStandartYPosition);
         }
+
+        card.IsDragged = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -72,6 +74,8 @@ public class CardController : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
         transform.localPosition = draggedCardStartPosition;
         draggedCardStartPosition = Vector2.zero;
+
+        card.IsDragged = false;
     }
 
     private bool IsAllowedToControlCard()

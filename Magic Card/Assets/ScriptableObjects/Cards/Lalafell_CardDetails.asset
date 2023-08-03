@@ -17,8 +17,8 @@ MonoBehaviour:
   manaCost: 5
   cardTier: 1
   cardAbility: 1
-  battlecryDetailsSO: {fileID: 0}
+  cardActionDetails: {fileID: 0}
   characterName: Lalafell
-  cardDescription: 
+  cardDescription: Forces the opponent to direct any attacks against this card
   characterAvatarSprite: {fileID: 21300000, guid: 1b4399aae531f31498b16f8bbc9211ef, type: 3}
   avatarBackgroundSprite: {fileID: 21300000, guid: 60ec81c63bb2dd343a7ac2d6c2adc5d5, type: 3}

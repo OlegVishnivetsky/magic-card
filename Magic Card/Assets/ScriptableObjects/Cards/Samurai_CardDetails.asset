@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 32
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d84bba7bb0312418b583b348e5be30, type: 3}
   m_Name: Samurai_CardDetails
   m_EditorClassIdentifier: 
-  id: 3e35d3274b3081b4984fdcbdaa6ad6b8
   damage: 4
   health: 4
   manaCost: 4
   cardTier: 2
   cardAbility: 2
-  battlecryDetailsSO: {fileID: 0}
+  cardActionDetails: {fileID: 0}
   characterName: Samurai
-  cardDescription: 
+  cardDescription: Allows you to attack on the same turn it is called
   characterAvatarSprite: {fileID: 21300000, guid: 448fd9c13123efe429daa4aa289c65ed, type: 3}
   avatarBackgroundSprite: {fileID: 21300000, guid: e7e17fd859498be45be5335a873d3652, type: 3}

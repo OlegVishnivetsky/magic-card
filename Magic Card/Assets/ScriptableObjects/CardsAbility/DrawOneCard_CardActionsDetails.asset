@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 32
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b45ac3bb521e794cbce0f9a2e0a81aa, type: 3}
-  m_Name: DrawOneCard_BattlecryDetails
+  m_Name: DrawOneCard_CardActionsDetails
   m_EditorClassIdentifier: 
-  battlecryCardAbility: 0
-  amountOfCardsToDraw: 0
+  cardActionType: 0
+  amountOfCardsToDraw: 1
+  cardToSpawnDetailsList: []

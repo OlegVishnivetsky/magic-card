@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Card))]
 public class CardUI : MonoBehaviour
 {
     private Card card;
@@ -90,7 +89,7 @@ public class CardUI : MonoBehaviour
     public void UpdateCardOtherTexts()
     {
         if (cardTypeText != null)
-            cardTypeText.text = Enum.GetName(typeof(CardAbility), card.GetCardDetails().cardAbility);
+            cardTypeText.text = Enum.GetName(typeof(CardAbilityType), card.GetCardDetails().cardAbility);
         if (cardTierText != null)
             cardTierText.text = Enum.GetName(typeof(CardTier), card.GetCardDetails().cardTier);
     }

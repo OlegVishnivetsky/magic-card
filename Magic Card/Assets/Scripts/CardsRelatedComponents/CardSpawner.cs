@@ -20,6 +20,7 @@ public class CardSpawner : SingletonMonobehaviour<CardSpawner>
     {
         Card spawnedCard = Instantiate(GameResources.Instance.cardPrefab);
         spawnedCard.SetCardDetails(cardDetails);
+        Destroy(spawnedCard.GetComponent<CardPlacedPositionUI>());
 
         if (isEnemy)
         {
@@ -38,6 +39,7 @@ public class CardSpawner : SingletonMonobehaviour<CardSpawner>
 
     public Card PlacePlayerCard(Card cardToPlace)
     {
+        Destroy(cardToPlace.GetComponent<CardPlacedPositionUI>());
         return PlaceCard(cardToPlace, playerPlacedZoneTransform);
     }
 

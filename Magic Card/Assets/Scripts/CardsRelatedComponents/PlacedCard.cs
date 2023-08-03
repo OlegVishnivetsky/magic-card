@@ -17,7 +17,14 @@ public class PlacedCard : MonoBehaviour, IEndDragHandler
             return;
         }
 
-        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out Card pointerCurrentCard))
+        RaycastResult raycastResult = eventData.pointerCurrentRaycast;
+
+        if (!raycastResult.isValid)
+        {
+            return;
+        }
+
+        if (raycastResult.gameObject.TryGetComponent(out Card pointerCurrentCard))
         {
             Card cardToAttack = pointerCurrentCard;
 
@@ -25,7 +32,7 @@ public class PlacedCard : MonoBehaviour, IEndDragHandler
             {
                 if (IsAnyTauntPlaced())
                 {
-                    if (cardToAttack.GetCardDetails().cardAbility != CardAbility.Taunt)
+                    if (cardToAttack.taunt == null)
                     {
                         return;
                     }
@@ -55,7 +62,7 @@ public class PlacedCard : MonoBehaviour, IEndDragHandler
     {
         foreach (Card card in GameFlowController.Instance.enemyPlacedCards)
         {
-            if (card.GetCardDetails().cardAbility == CardAbility.Taunt)
+            if (card.taunt != null)
             {
                 return true;
             }

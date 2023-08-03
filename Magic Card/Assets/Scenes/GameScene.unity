@@ -4459,6 +4459,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1124813022077051744, guid: be1d66d5c639e774796c4d9009995adc, type: 3}
+      propertyPath: cardPlacedPositionObject
+      value: 
+      objectReference: {fileID: 4370203660918608834, guid: 6f039381964b60c4d96090332bc23eed, type: 3}
     - target: {fileID: 5716930447809112962, guid: be1d66d5c639e774796c4d9009995adc, type: 3}
       propertyPath: m_RootOrder
       value: 7

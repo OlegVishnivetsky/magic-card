@@ -59,7 +59,7 @@ public class EnemyAttackAI : MonoBehaviour
     {
         foreach (Card tauntCard in GameFlowController.Instance.playerPlacedCards)
         {
-            if (tauntCard.GetCardDetails().cardAbility == CardAbility.Taunt)
+            if (tauntCard.taunt != null)
             {
                 return tauntCard;
             }

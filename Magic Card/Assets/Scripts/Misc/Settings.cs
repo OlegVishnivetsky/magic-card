@@ -12,7 +12,7 @@ public static class Settings
     public const int maxNumberOfCardsInHand = 6;
 
     public const float cardStandartYPosition = -600f;
-    public const float cardMouseEnterYPosition = -365f;
+    public const float cardMouseEnterYPosition = -340f;
 
     public static Color cardSTierColor = new Color(246f, 224f, 0f);
     public static Color cardATierColor = new Color(95f, 246f, 0f);

@@ -25,14 +25,28 @@ public class CardDetailsSOEditor : Editor
 
         EditorGUILayout.Space(10);
         cardDetails.cardTier = (CardTier)EditorGUILayout.EnumPopup("Card Tier", cardDetails.cardTier);
-        cardDetails.cardAbility = (CardAbility)EditorGUILayout.EnumPopup("Card Ability", cardDetails.cardAbility);
-
-        if (cardDetails.cardAbility == CardAbility.Battlecry)
+        cardDetails.cardAbility = (CardAbilityType)EditorGUILayout.EnumPopup("Card Ability", cardDetails.cardAbility);
+        
+        switch (cardDetails.cardAbility)
         {
-            EditorGUILayout.Space(5);
-            customEditorPresets.DrawHeader("BATTLECRY PARAMETERS");
-            cardDetails.battlecryDetailsSO = (BattlecryDetailsSO)EditorGUILayout.ObjectField("Battlecry Details",
-                cardDetails.battlecryDetailsSO, typeof(ScriptableObject), false);
+            case CardAbilityType.Battlecry:
+                EditorGUILayout.Space(5);
+                customEditorPresets.DrawHeader("BATTLECRY PARAMETERS");
+
+                cardDetails.cardActionDetails = (CardActionsDetailsSO)EditorGUILayout.ObjectField("Battlecry Details",
+                    cardDetails.cardActionDetails, typeof(CardActionsDetailsSO), false);
+                break;
+
+            case CardAbilityType.Deathrattle:
+                EditorGUILayout.Space(5);
+                customEditorPresets.DrawHeader("DEATHATTLE PARAMETERS");
+
+                cardDetails.cardActionDetails = (CardActionsDetailsSO)EditorGUILayout.ObjectField("Deathrattle Details",
+                    cardDetails.cardActionDetails, typeof(CardActionsDetailsSO), false);
+                break;
+
+            default:
+                break;
         }
 
         EditorGUILayout.Space(10);

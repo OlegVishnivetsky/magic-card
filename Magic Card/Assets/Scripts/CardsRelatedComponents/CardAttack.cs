@@ -7,7 +7,7 @@ public class CardAttack : MonoBehaviour
 
     private int damage;
 
-    public bool IsCanAttack { get; set; }
+    public bool IsCanAttack;
 
     private void Awake()
     {

@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Card))]
 public class CardHealth : MonoBehaviour
 {
     private Card card;

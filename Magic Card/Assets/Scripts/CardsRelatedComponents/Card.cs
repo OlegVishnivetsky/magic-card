@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -14,7 +15,29 @@ public class Card : MonoBehaviour
     public CardSelector cardSelector;
     public CardController cardController;
 
+    [HideInInspector] public Taunt taunt;
     [HideInInspector] public DivineShield divineShield;
+
+    public event Action<bool> OnCardDragged;
+
+    private bool isDragged;
+
+    public bool IsDragged
+    {
+        get
+        {
+            return isDragged;
+        }
+        set
+        {
+            if (isDragged != value)
+            {
+                isDragged = value;
+
+                OnCardDragged?.Invoke(IsDragged);
+            }
+        }
+    }
 
     public bool IsEnemy { get; set; }
 
@@ -37,16 +60,24 @@ public class Card : MonoBehaviour
     {
         switch (cardDetails.cardAbility)
         {
-            case CardAbility.Rush:
+            case CardAbilityType.Rush:
                 cardAttack.IsCanAttack = true;
                 break;
 
-            case CardAbility.DivineShield:
+            case CardAbilityType.DivineShield:
                 divineShield = gameObject.AddComponent<DivineShield>();
                 break;
 
-            case CardAbility.Battlecry:
+            case CardAbilityType.Battlecry:
                 gameObject.AddComponent<Battlecry>();
+                break;
+
+            case CardAbilityType.Taunt:
+                taunt = gameObject.AddComponent<Taunt>();
+                break;
+
+            case CardAbilityType.Deathrattle:
+                gameObject.AddComponent<Deathrattle>();
                 break;
 
             default:

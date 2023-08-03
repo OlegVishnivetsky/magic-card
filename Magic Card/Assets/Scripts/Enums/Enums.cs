@@ -4,7 +4,7 @@ public enum Turn
     EnemyTurn
 }
 
-public enum CardAbility
+public enum CardAbilityType
 {
     Default,
     Taunt,
@@ -14,7 +14,7 @@ public enum CardAbility
     Battlecry
 }
 
-public enum BattlecryCardAbility
+public enum CardActionType
 {
     DrawCard,
     SpawnCard
